@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "task": [
+    {
+      "taskname": "Task1",
+      "description": "React",
+      "priority": "high",
+      "duedate": "2023-03-30",
+      "status": "completed",
+      "id": 1
+    },
+    {
+      "taskname": "Task4",
+      "description": "jjjijh",
+      "priority": "high",
+      "duedate": "",
+      "status": "Cancel",
+      "taskcolour": "",
+      "id": 3
+    }
+  ],
+  "user": [
+    {
+      "name": "Kuralanban",
+      "email": "kural@gmail.com",
+      "pass": "Kural",
+      "mobile": "9003759065",
+      "id": 3
+    },
+    {
+      "name": "Monica",
+      "email": "monica@gmail.com",
+      "pass": "Moni@13",
+      "mobile": "9003759065",
+      "id": 4
+    }
+  ]
+}

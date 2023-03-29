@@ -1,0 +1,14 @@
+#color{
+    background-color: blue;
+}
+.lab{
+margin-left: 50px;
+}
+
+.container{
+    display: flex;
+
+}
+.container div{
+    margin: 30px;
+}

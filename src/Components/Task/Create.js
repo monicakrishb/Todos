@@ -12,19 +12,17 @@ export const Create = () => {
   const [priority, setPriority] = useState("");
   const [status, setStatus] = useState("");
 
-
   const [duedate, setDuedate] = useState("");
-  
 
   const handleSubmit = () => {
- 
     const obj = {
       taskname: taskname,
       description: description,
       priority: priority,
       duedate: duedate,
       status: status,
-      taskcolour:status
+      taskcolour: status,
+      currentDate:new Date()
     };
 
     axios.post("http://localhost:8000/task/", obj);
@@ -33,11 +31,13 @@ export const Create = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="container form">
         <div className="" id="form">
           <form className="create-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="lab">Task Name</label>
+              <label className="lab" id="task">
+                Task Name
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -47,7 +47,9 @@ export const Create = () => {
               />
             </div>
             <div className="form-group">
-              <label>Description</label>
+              <label className="lab" id="des">
+                Description
+              </label>
               <textarea
                 rows="5"
                 className="form-control"
@@ -57,13 +59,12 @@ export const Create = () => {
               ></textarea>
             </div>
             <div className="form-group">
-              <label>Priority</label>
-              <select
-                className="form-control"
-                name="taskName"
-                value={priority}
+              <label className="lab" id="priority">
+                Priority
+              </label>
+              <select>
+                className="form-control" name="taskName" value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-              >
                 <option>set task priority</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
@@ -71,7 +72,9 @@ export const Create = () => {
               </select>
             </div>
             <div className="form-control">
-              <label>Status</label>
+              <label className="lab" id="st">
+                Status
+              </label>
               <select
                 id="select"
                 className="form-control"
@@ -85,7 +88,7 @@ export const Create = () => {
             </div>
 
             <div className="form-group">
-              <label>Duedate</label>
+              <label className="lab">Duedate</label>
               <input
                 type="date"
                 className="form-control"

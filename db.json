@@ -18,21 +18,28 @@
   },
   "task": [
     {
-      "taskname": "Task1",
-      "description": "React",
+      "taskname": "React",
+      "description": "Components",
       "priority": "high",
       "duedate": "2023-03-30",
       "status": "completed",
       "id": 1
     },
     {
-      "taskname": "Task4",
-      "description": "jjjijh",
+      "taskname": "Angular",
+      "description": "Forms",
       "priority": "high",
-      "duedate": "",
-      "status": "Cancel",
-      "taskcolour": "",
-      "id": 3
+      "duedate": "2023-04-14",
+      "status": "inprogress",
+      "id": 2
+    },
+    {
+      "taskname": "SQL",
+      "description": "Queries",
+      "priority": "medium",
+      "duedate": "2023-04-06",
+      "status": "cancelled",
+      "id": 4
     }
   ],
   "user": [
@@ -49,6 +56,13 @@
       "pass": "Moni@13",
       "mobile": "9003759065",
       "id": 4
+    },
+    {
+      "name": "Sindhuja",
+      "email": "sindhu@gmail.com",
+      "pass": "Sindhu@13",
+      "mobile": "9003759065",
+      "id": 5
     }
   ]
 }

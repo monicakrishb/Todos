@@ -1,14 +1,13 @@
 #nav {
-    display: flex;
+  display: flex;
   width: 1450px;
   height: 20px;
   background-color: #2564cf;
   padding: 10px 10px 30px 10px;
   align-items: center;
 }
-#nav  div{
-    margin: 20px;
-    
+#nav div {
+  margin: 20px;
 }
 
 #nav {
@@ -18,9 +17,19 @@
 }
 .nav-link {
   color: white;
+  justify-content: space-between;
+  text-decoration: none;
+}
+#white {
+  color: white;
+}
+#todo {
+  color: white;
+  margin-bottom: 10px;
+}
+.flex {
   display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
 }
-#white{
-    color:white;
-}
-

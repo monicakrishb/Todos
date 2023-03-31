@@ -1,10 +1,7 @@
-.App {
+/* .App {
   text-align: center;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
+display: flex;
+} */
 
 .auth-form-container,
 .login-form,
@@ -51,4 +48,9 @@ button {
   background: none;
   color: white;
   text-decoration: underline;
+}
+.form {
+  width: 300px;
+  margin-left: 500px;
+  margin-bottom: 150px;
 }

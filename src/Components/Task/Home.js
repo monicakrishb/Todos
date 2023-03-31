@@ -3,7 +3,7 @@ import axios from "axios";
 import "../styles/create.css";
 import { useNavigate } from "react-router-dom";
 
-export const Home = () => {
+export const Task = () => {
   useEffect(() => {
     loadData();
     colorChanger();
@@ -17,38 +17,20 @@ export const Home = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await axios.get("http://localhost:8000/task").then((response) => {
-      setUserdata(response.data);
-      const date = new Date();
-      let day = date.getDate();
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear();
-      let currentDate = `${day}-${month}-${year}`;
-      const userdata = response.data;
-      var today = new Date();
-
-console.log("userdata is ",userdata);
-console.log("today is ", today);
-
-      var duedate = new Date(userdata[0].duedate);
-      console.log(userdata[0].duedate);
-      var diff = today.getTime() - duedate.getTime();
-      console.log("diff is "+diff);
-      var daydiff = diff / (1000 * 60 * 60 * 24);
-      console.log("day diff is ",daydiff);
-      const dateCheck = Math.round(daydiff);
-      console.log("date check is ",dateCheck)
-      if (dateCheck==0) {
-        setDuestatus("today");
-      } else if (dateCheck>0) {
-        setDuestatus(`overdued by ${dateCheck}`);
-      } else {
-        setDuestatus(`Due by ${duedate}`);
-      }
-      console.log("due status is ",duestatus);
-
-    });
-
+    const response = await axios
+      .get("http://localhost:8000/task")
+      .then((response) => {
+        const filtered = response.data.map((val) => {
+          const duedate = new Date(val.duedate);
+          const currentDate = new Date();
+          const dueDateTime = duedate.getTime();
+          const diff = dueDateTime - currentDate.getTime();
+          val.remaining = Math.round(diff / (1000 * 60 * 60 * 24));
+          return val;
+        });
+        setUserdata(filtered);
+        console.log(filtered);
+      });
   };
 
   const completedTask = userdata.filter((e) => {
@@ -64,53 +46,15 @@ console.log("today is ", today);
       setTaskColour("grey");
     }
 
-
     console.log(taskcolour);
   };
 
+  const date = new Date();
 
-
-const date=new Date();
-
-  
   const dueStatus = () => {
     loadData();
-    // const date = new Date();
-
-    // let day = date.getDate();
-    // let month = date.getMonth() + 1;
-    // let year = date.getFullYear();
-    // let currentDate = `${day}-${month}-${year}`;
-    // console.log(userdata);
-    // var today = new Date();
-    // var duedate = new Date(userdata.duedate);
-    // console.log(today);
-    // console.log(userdata.duedate);
-    // var diff = today.getTime() - duedate.getTime();
-    // console.log(diff);
-    // var daydiff = diff / (1000 * 60 * 60 * 24);
-    // console.log(daydiff);
-    // var dateCheck = Math.round(daydiff);
-    // console.log(dateCheck);
-    // if (userdata.duedate == currentDate) {
-    //   setDuestatus("today");
-    //   console.log(duestatus);
-    // } else if (userdata.status == currentDate) {
-    //   setDuestatus("");
-    // } else {
-    //   setDuestatus("grey");
-    // }
-    // console.log(userdata.duedate);
-    // console.log(duedate);
   };
-  // const loadData = async () => {
-  //   const response = await axios.get("http://localhost:8000/task");
-  //   console.log(response.data);
-  //   setUserdata(response.data);
-  //   console.log(userdata);
-  //   console.log(response.data);
 
-  // };
   const highPriorityTasks = userdata.filter((a) => {
     return a.priority == "high";
   });
@@ -122,81 +66,110 @@ const date=new Date();
 
   return (
     <>
-      <div>
-        <div className="task-container high" id="High">
-          <h1>High Priority Task</h1>
-          {highPriorityTasks.map((e) => (
-            <div className="box">
-              <h4>
-                {/* <tr id="date" key={e.taskname}>
-                  <div className="tabrow">
-                    <td className="com">{e.taskname}</td>
-
-                    <td className="row">{e.description}</td>
-                    <td className="row">{e.priority}</td>
-                    <td className="row">{e.duedate}</td>
-                    <td className="row">{e.status}</td>
-                  </div>
-                </tr> */}
-                <span>{e.taskname}</span> <br />
-                <span>{e.description}</span> <br />
-                <span>{e.duedate}</span>
-                <br />
-              </h4>
-            </div>
-          ))}
-        </div>
-
-        <div className="task-container high">
-          <h2>Completed Task</h2>
-          {completedTask.map((e) => (
-            <div className="box">
-              <h4>
-                {/* <tr key={e.taskname}>
-                  <td className="com">{e.taskname}</td>
-                  <td className="com">{e.description}</td>
-                  <td className="com">{e.priority}</td>
-                  <td className="com">{e.duedate}</td>
-                  <td className="com">{e.id}</td>
-                  <td className="com">{e.status}</td>
-                </tr> */}
-                <span>{e.taskname}</span> <br />
-                <span>{e.description}</span> <br />
-                <span>{e.priority}</span> <br />
-                <span>{e.duedate}</span> <br />
-              </h4>
-            </div>
-          ))}
-        </div>
-        <div className="high">
-          <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
-          <select
-            className="form-control category"
-            id="category"
-            name="taskName"
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
+      {/* <div className="highandcomplete"> */}
+      <div className="center cTask">
+        <h3>Create Your Task Here</h3>
+        <div className="box addTask">
+          <span
+            class="material-symbols-outlined"
+            onClick={() => {
+              navigate("/create");
+            }}
           >
-            <option>set task priority</option>
+            add
+          </span>{" "}
+          <br />
+          <h4 id="add">Add a task</h4>
+        </div>
+      </div>
+      <div className="highandcomplete">
+        <div className="task-container high" id="High">
+          <h3>High Priority Task</h3>
 
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
+          <div className="whole">
+            {highPriorityTasks.map((e) => (
+              <div
+                className="box"
+                style={{
+                  background:
+                    e.status == "inprogress"
+                      ? "orange"
+                      : e.status === "completed"
+                      ? "green"
+                      : "grey",
+                }}
+              >
+                <h4>
+                  <span>{e.taskname}</span> <br />
+                  <span>{e.description}</span> <br />
+                  <span>{e.duedate}</span>
+                  <br />
+                </h4>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <div className="task-container">
-            {userdata &&
-              userdata
-                .filter((e) => e.priority == priority)
-                .map((e) => (
-                  // <tr key={e.taskname}>
-                  //   <td>{e.taskname}</td>
-                  //   <td>{e.description}</td>
-                  //   <td>{e.priority}</td>
-                  //   <td>{e.duedate}</td>
-                  //   <td>{e.status}</td>
-                  // </tr>
-                  <div className="box">
+        <div className="task-container high" id="complete">
+          <h3>Completed Task</h3>
+          <div className="whole">
+            {completedTask.map((e) => (
+              <div
+                className="box"
+                style={{
+                  background:
+                    e.status == "inprogress"
+                      ? "orange"
+                      : e.status === "completed"
+                      ? "green"
+                      : "grey",
+                }}
+              >
+                <h4>
+                  <span>{e.taskname}</span> <br />
+                  <span>{e.description}</span> <br />
+                  <span>{e.priority}</span> <br />
+                  <span>{e.duedate}</span> <br />
+                </h4>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
+
+      <select
+        className="form-control category"
+        id="category"
+        name="taskName"
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+      >
+        <option>Pending</option>
+
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <div className="high">
+        <div className="task-container">
+          {userdata &&
+            userdata
+              .filter((e) => e.priority == priority)
+              .map((e) => (
+                <div className="whole">
+                  <div
+                    className="box"
+                    style={{
+                      background:
+                        e.status == "inprogress"
+                          ? "orange"
+                          : e.status === "completed"
+                          ? "green"
+                          : "grey",
+                    }}
+                  >
                     <h4>
                       <span>{e.taskname}</span> <br />
                       <span>{e.description}</span> <br />
@@ -204,42 +177,50 @@ const date=new Date();
                       <span>{e.duedate}</span> <br />
                     </h4>
                   </div>
-                ))}
-          </div>
+                </div>
+              ))}
         </div>
       </div>
-      <div>
-        <div className="high" id="create">
-          <h1>Create New Tasks Here!</h1>
-          <button
-            id="add"
+
+      <h1>List Of Tasks</h1>
+      <div className="partsec">
+        {/* <div className="center">
+
+        
+        <h1>Create Your Task Here</h1>
+        <div className="box addTask">
+          <span
+            class="material-symbols-outlined"
             onClick={() => {
               navigate("/create");
             }}
           >
-            <h3> Add a task</h3>
-          </button>
+            add
+          </span>{" "}
+          <h4 id="add">Add a task</h4>
         </div>
-
+</div> */}
         <div className="container">
-          <div>
+          {/* <div
+          
+          >
             <tr>
               <th>Task Name</th>
               <th>Description</th>
               <th>Priority</th>
               <th>Duedate</th>
-
+              <th>Remaining Days</th>
               <th>Status</th>
               <th>Action</th>
               <th>Action</th>
-              {/* <th>Status</th> */}
             </tr>
 
             {userdata.map((e) => (
               <tr key={e.taskname}>
                 <td
+                  className="taskname"
                   style={{
-                    backgroundColor:
+                    color:
                       e.status == "inprogress"
                         ? "orange"
                         : e.status === "completed"
@@ -251,10 +232,12 @@ const date=new Date();
                 </td>
                 <td>{e.description}</td>
                 <td>{e.priority}</td>
-                <td>{ e.duedate} </td>
+                <td>{e.duedate} </td>
+                <td>{e.remaining}</td>
                 <td>{e.status}</td>
                 <td>
                   <button
+                    id="edit"
                     className="editbutton"
                     onClick={() => {
                       navigate("edit/" + e.id);
@@ -265,6 +248,7 @@ const date=new Date();
                 </td>
                 <td>
                   <button
+                    id="edit"
                     className="editbutton"
                     onClick={() => {
                       Delete(e.id);
@@ -275,6 +259,73 @@ const date=new Date();
                   </button>
                 </td>
               </tr>
+            ))}
+          </div> */}
+          <div className="listoftasks">
+            {userdata.map((e) => (
+              <div
+                className="allTask"
+                style={{
+                  background:
+                    e.status == "inprogress"
+                      ? "orange"
+                      : e.status === "completed"
+                      ? "green"
+                      : "grey",
+                }}
+              >
+                <span key={e.taskname}>
+                  {" "}
+                  <br />
+                  <span
+                    className="taskname"
+                    // style={{
+                    //   color:
+                    //     e.status == "inprogress"
+                    //       ? "orange"
+                    //       : e.status === "completed"
+                    //       ? "green"
+                    //       : "grey",
+                    // }}
+                  >
+                    Task Name :{e.taskname}
+                  </span>
+                  <br />
+                  <span>Description :{e.description}</span>
+                  <br />
+                  <span> Priority :{e.priority}</span>
+                  <br />
+                  <span>Duedate :{e.duedate} </span>
+                  <br />
+                  <span>Remaining Days :{e.remaining}</span>
+                  <br />
+                  <span>Status :{e.status}</span>
+                  <br />
+                  <span>
+                    <span
+                      id="edit"
+                      className="editbutton material-symbols-outlined"
+                      onClick={() => {
+                        navigate("edit/" + e.id);
+                      }}
+                    >
+                      Edit
+                    </span>
+                  </span>
+                  <span>
+                    <span
+                      id="edit"
+                      className="editbutton  material-symbols-outlined"
+                      onClick={() => {
+                        Delete(e.id);
+                      }}
+                    >
+                      {" "}
+                      Delete
+                    </span>
+                  </span>
+                </span>
+              </div>
             ))}
           </div>
         </div>

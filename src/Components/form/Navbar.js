@@ -12,60 +12,35 @@ export default function Nav() {
   };
 
   return (
-      <div id="nav">
-        <h4>
-            ToDos
-        </h4>
-      <div>
-        <Link to="/" className="nav-link" style={{ color: "white" }}>
-          Home
-        </Link>
-      </div>{" "}
-      \ <div>
-        <Link to="/register" className="nav-link" style={{ color: "white" }}>
-          Register
-        </Link>
-      </div>
-      <div>
-        <Link to="/login" className="nav-link" style={{ color: "white" }}>
-          Login
-        </Link>
-      </div>{" "}
-     
-      <div>
-        <Link to="/logout" className="nav-link" style={{ color: "white" }}>
-          Logout
-        </Link>
-      </div>
-      {/* <nav className="navbar navbar-expand-lg navbar-light ">
-        <a class="navbar-brand" id="white" className="nav-link" href="#">
-          To Do
-        </a>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item active">
-              <Link to="/" className="nav-link" style={{ color: "white" }}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/register" className="nav-link" style={{ color: "white" }}>
-                Register
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link" style={{ color: "white" }}>
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/logout" className="nav-link" style={{ color: "white" }}>
-                Logout
-              </Link>
-            </li>
-          </ul>
+    <div id="nav">
+      <h4 id="todo">To Do</h4>
+      <div className="flex">
+        <div>
+          <Link to="/task" className="nav-link">
+            Tasks
+          </Link>
         </div>
-      </nav> */}
+        {value === null ? (
+          <div>
+            <Link to="/register" className="nav-link">
+              Register
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link onClick={handleClickss} className="nav-link">
+              Logout{" "}
+            </Link>
+          </div>
+        )}
+        {value === null ? (
+          <Link to="/login" className="nav-link">
+           Login
+          </Link>
+        ) : (
+          ""
+        )}
+      </div>{" "}
     </div>
   );
 }

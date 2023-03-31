@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import "../styles/create.css";
+
+
 
 export const Edit = () => {
   const params = useParams();
@@ -20,7 +23,7 @@ export const Edit = () => {
     setDescription(response.data.description);
     setPriority(response.data.priority);
     setDuedate(response.data.duedate);
-    status(response.data.setStatus);
+    setStatus(response.data.status);
 
     console.log(userdata);
   };
@@ -30,7 +33,7 @@ export const Edit = () => {
   const [priority, setPriority] = useState("");
   const [duedate, setDuedate] = useState("");
   const [status, setStatus] = useState("");
-const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     const obj = {
@@ -43,15 +46,14 @@ const navigate=useNavigate();
 
     axios.put("http://localhost:8000/task/" + v, obj);
     loadData();
-    navigate("/");
+    navigate("/task");
   };
 
   return (
-    <div>
-      hello
+    <div className=" container editform">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Task Name</label>
+          <label  className="lab"id="task">Task Name</label>
           <input
             type="text"
             className="form-control"
@@ -61,7 +63,7 @@ const navigate=useNavigate();
           />
         </div>
         <div className="form-group">
-          <label>Description</label>
+          <label  className="lab"id="des">Description</label>
           <textarea
             rows="5"
             className="form-control"
@@ -71,7 +73,7 @@ const navigate=useNavigate();
           ></textarea>
         </div>
         <div className="form-group">
-          <label>Priority</label>
+          <label  className="lab" id="priority">Priority</label>
           <select
             className="form-control"
             name="taskName"
@@ -87,12 +89,12 @@ const navigate=useNavigate();
           </select>
         </div>
         <div className="form-control">
-          <label>Status</label>
+          <label  className="lab" id="st">Status</label>
           <select
             id="select"
             className="form-control"
             name="taskName"
-            onChange={(e) =>setStatus(e.target.value)}
+            onChange={(e) => setStatus(e.target.value)}
           >
             <option>pending</option>
 
@@ -104,7 +106,7 @@ const navigate=useNavigate();
         </div>
 
         <div className="form-group">
-          <label>Duedate</label>
+          <label  className="lab" id="due">Duedate</label>
           <input
             type="date"
             className="form-control"
@@ -113,7 +115,10 @@ const navigate=useNavigate();
             name="taskName"
           />
         </div>
-        <input type="submit" />
+        <input
+          type="submit"
+        
+        />
       </form>
     </div>
   );

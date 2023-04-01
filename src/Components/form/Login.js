@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import service from "../../services/API";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "../styles/form.css"
+import "../styles/form.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,22 +21,30 @@ export const Login = () => {
     return result;
   };
 
+  useEffect(() => {
+    if (sessionStorage.getItem("useremail")) {
+      usenavigate("/task");
+    }
+  }, []);
+
   const ProceedLogin = async (e) => {
     e.preventDefault();
     if (validate(email, pass)) {
       try {
         await service.loginget(email).then((response) => {
           if (Object.keys(response.data).length === 0) {
-            toast.error("Please enter valid username");
+            toast.error("Please enter valid useremail");
           } else {
             if (response.data[0].pass === pass) {
               toast.success("Success");
 
               sessionStorage.setItem("useremail", email);
 
-              usenavigate("/");
+              usenavigate("/task");
             } else {
-              toast.error("Please enter valid credentials");
+              if (response.data[0].pass != pass) {
+                toast.error("Please enter valid password");
+              }
             }
           }
         });
@@ -49,7 +57,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container form">
       <h2>Login</h2>
       <form className="login-form" onSubmit={ProceedLogin}>
         <label htmlFor="email">email</label>
@@ -72,7 +80,7 @@ export const Login = () => {
         />
         <button type="submit">Log In</button>
       </form>
-      <a href="/register">
+      <a href="/register" id="logindesc">
         <button className="link-btn">
           Don't have an account? Register here.
         </button>

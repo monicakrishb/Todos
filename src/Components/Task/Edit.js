@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/create.css";
-
-
+import service from "../../services/API";
 
 export const Edit = () => {
   const params = useParams();
@@ -14,9 +13,13 @@ export const Edit = () => {
   }, []);
 
   const [userdata, setUserdata] = useState([]);
+  const useremail = sessionStorage.getItem("useremail");
+
+
 
   const loadData = async () => {
-    const response = await axios.get("http://localhost:8000/task/" + v);
+    const response = await service.editget(v)
+  //   const response = await axios.get("http://localhost:8000/task/" + v);
     console.log(response.data);
     setUserdata(response.data);
     setTaskName(response.data.taskname);
@@ -35,16 +38,20 @@ export const Edit = () => {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     const obj = {
       taskname: taskname,
       description: description,
       priority: priority,
       duedate: duedate,
       status: status,
-    };
+      taskcolour: status,
+      useremail:useremail,
 
-    axios.put("http://localhost:8000/task/" + v, obj);
+      currentDate: new Date(),
+    };
+      await service.editput(v,obj) 
+  //  await axios.put("http://localhost:8000/task/" + v, obj);
     loadData();
     navigate("/task");
   };
@@ -53,7 +60,9 @@ export const Edit = () => {
     <div className=" container editform">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label  className="lab"id="task">Task Name</label>
+          <label className="lab" id="task">
+            Task Name
+          </label>
           <input
             type="text"
             className="form-control"
@@ -63,7 +72,9 @@ export const Edit = () => {
           />
         </div>
         <div className="form-group">
-          <label  className="lab"id="des">Description</label>
+          <label className="lab" id="des">
+            Description
+          </label>
           <textarea
             rows="5"
             className="form-control"
@@ -73,7 +84,9 @@ export const Edit = () => {
           ></textarea>
         </div>
         <div className="form-group">
-          <label  className="lab" id="priority">Priority</label>
+          <label className="lab" id="priority">
+            Priority
+          </label>
           <select
             className="form-control"
             name="taskName"
@@ -89,7 +102,9 @@ export const Edit = () => {
           </select>
         </div>
         <div className="form-control">
-          <label  className="lab" id="st">Status</label>
+          <label className="lab" id="st">
+            Status
+          </label>
           <select
             id="select"
             className="form-control"
@@ -106,7 +121,9 @@ export const Edit = () => {
         </div>
 
         <div className="form-group">
-          <label  className="lab" id="due">Duedate</label>
+          <label className="lab" id="due">
+            Duedate
+          </label>
           <input
             type="date"
             className="form-control"
@@ -115,10 +132,7 @@ export const Edit = () => {
             name="taskName"
           />
         </div>
-        <input
-          type="submit"
-        
-        />
+        <input type="submit" />
       </form>
     </div>
   );

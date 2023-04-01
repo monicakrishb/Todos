@@ -25,7 +25,11 @@
 }
 #todo {
   color: white;
-  margin-bottom: 10px;
+  position: relative;
+  top: 9px;
+  width: 100px;
+  align-items: center;
+  right: 20px;
 }
 .flex {
   display: flex;

@@ -7,7 +7,24 @@ class HttpService {
   loginget = (email) => {
     return axios.get(this.environment + `/user?email=${email}`);
   };
+  homeget = () => {
+    return axios.get(this.environment + "/task");
+  };
+  // placeorder = () => {
+  //   return axios.get(this.environment + "/cartDetails");
+  // };
+  createpost = (obj) => {
+    return axios.post(this.environment + "/task/", obj);
+  };
+  editput =(v,obj) =>{
+    return axios.put(this.environment+"/task/" + v, obj);
+  
+  };
+  editget = (v) =>{
+    return axios.get(this.environment+"/task/" + v)
+  }
 }
+
 
 const service = new HttpService();
 export default service;

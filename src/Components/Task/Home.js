@@ -18,19 +18,18 @@ export const Task = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await service.homeget()
-      .then((response) => {
-        const filtered = response.data.map((val) => {
-          const duedate = new Date(val.duedate);
-          const currentDate = new Date();
-          const dueDateTime = duedate.getTime();
-          const diff = dueDateTime - currentDate.getTime();
-          val.remaining = Math.round(diff / (1000 * 60 * 60 * 24));
-          return val;
-        });
-        setUserdata(filtered);
-        console.log(filtered);
+    const response = await service.homeget().then((response) => {
+      const filtered = response.data.map((val) => {
+        const duedate = new Date(val.duedate);
+        const currentDate = new Date();
+        const dueDateTime = duedate.getTime();
+        const diff = dueDateTime - currentDate.getTime();
+        val.remaining = Math.round(diff / (1000 * 60 * 60 * 24));
+        return val;
       });
+      setUserdata(filtered);
+      console.log(filtered);
+    });
   };
 
   const completedTask = userdata.filter((e) => {
@@ -145,10 +144,9 @@ export const Task = () => {
           </div>
         </div>
       </div>
-
+     <div>
       <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
-
-      <select
+       <select
         className="form-control category"
         id="category"
         name="taskName"
@@ -161,6 +159,7 @@ export const Task = () => {
         <option value="medium">Medium</option>
         <option value="low">Low</option>
       </select>
+      </div>
       <div className="high">
         <div className="task-container">
           {userdata &&

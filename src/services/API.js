@@ -10,21 +10,16 @@ class HttpService {
   homeget = () => {
     return axios.get(this.environment + "/task");
   };
-  // placeorder = () => {
-  //   return axios.get(this.environment + "/cartDetails");
-  // };
   createpost = (obj) => {
     return axios.post(this.environment + "/task/", obj);
   };
-  editput =(v,obj) =>{
-    return axios.put(this.environment+"/task/" + v, obj);
-  
+  editput = (v, obj) => {
+    return axios.put(this.environment + "/task/" + v, obj);
   };
-  editget = (v) =>{
-    return axios.get(this.environment+"/task/" + v)
-  }
+  editget = (v) => {
+    return axios.get(this.environment + "/task/" + v);
+  };
 }
-
 
 const service = new HttpService();
 export default service;

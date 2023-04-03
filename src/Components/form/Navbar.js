@@ -17,9 +17,10 @@ export default function Nav() {
       <div className="flex">
         <div>
           <Link to="/task" className="nav-link">
-            Tasks
+            Home
           </Link>
         </div>
+        <Link to="/tasklist" className="nav-link">List</Link>
         {value === null ? (
           <div>
             <Link to="/register" className="nav-link">
@@ -35,7 +36,7 @@ export default function Nav() {
         )}
         {value === null ? (
           <Link to="/login" className="nav-link">
-           Login
+            Login
           </Link>
         ) : (
           ""

@@ -12,11 +12,9 @@ export const Login = () => {
     let result = true;
     if (email === "" || email === null) {
       result = false;
-      //   toast.warning("Please Enter Username");
     }
     if (pass === "" || pass === null) {
       result = false;
-      //   toast.warning("Please Enter Password");
     }
     return result;
   };
@@ -36,7 +34,7 @@ export const Login = () => {
             toast.error("Please enter valid useremail");
           } else {
             if (response.data[0].pass === pass) {
-              toast.success("Success");
+              toast.success(" login success");
 
               sessionStorage.setItem("useremail", email);
 

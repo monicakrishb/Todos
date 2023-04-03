@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/create.css";
-import "../styles/create.css";
+import service from "../../services/API";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -13,8 +12,10 @@ export const Create = () => {
   const [status, setStatus] = useState("");
 
   const [duedate, setDuedate] = useState("");
+  const useremail = sessionStorage.getItem("useremail");
+  console.log(useremail);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const obj = {
       taskname: taskname,
       description: description,
@@ -22,11 +23,13 @@ export const Create = () => {
       duedate: duedate,
       status: status,
       taskcolour: status,
-      currentDate:new Date()
+      useremail: useremail,
+      currentDate: new Date(),
     };
-
-    axios.post("http://localhost:8000/task/", obj);
-    navigate("/");
+    console.log(obj);
+    await service.createpost(obj);
+    navigate("/tasklist");
+    // await axios.post("http://localhost:8000/task/", obj);
   };
 
   return (
@@ -35,19 +38,20 @@ export const Create = () => {
         <div className="" id="form">
           <form className="create-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="lab" id="task">
+              <label className="lab" >
                 Task Name
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control task"
                 value={taskname}
                 onChange={(e) => setTaskName(e.target.value)}
                 name="taskName"
+                id="task"
               />
             </div>
             <div className="form-group">
-              <label className="lab" id="des">
+              <label  className="des">
                 Description
               </label>
               <textarea
@@ -56,31 +60,37 @@ export const Create = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 name="description"
+                id="text"
               ></textarea>
             </div>
             <div className="form-group">
-              <label className="lab" id="priority">
+              <label className="priority" >
                 Priority
               </label>
-              <select>
-                className="form-control" name="taskName" value={priority}
+              <select
+                value={priority}
+                className="form-control"
+                name="priority"
                 onChange={(e) => setPriority(e.target.value)}
-                <option>set task priority</option>
+                id="pinput"
+              >
+                <option>Pending</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
                 <option value="low">Low</option>
               </select>
             </div>
             <div className="form-control">
-              <label className="lab" id="st">
+              <label className="status">
                 Status
               </label>
               <select
                 id="select"
                 className="form-control"
                 name="taskName"
-                onChange={(e) => setStatus(e.target.value)}
+                onClick={(e) => setStatus(e.target.value)}
               >
+                <option>Pending</option>
                 <option value="completed">Completed</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="cancelled">Cancelled</option>
@@ -88,13 +98,16 @@ export const Create = () => {
             </div>
 
             <div className="form-group">
-              <label className="lab">Duedate</label>
+              <label className="lab" id="due">
+                Duedate
+              </label>
               <input
                 type="date"
                 className="form-control"
                 value={duedate}
                 onChange={(e) => setDuedate(e.target.value)}
                 name="taskName"
+                id="date"
               />
             </div>
             <input type="submit" />

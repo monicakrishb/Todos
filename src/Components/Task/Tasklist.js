@@ -78,7 +78,7 @@ export const Tasklist = () => {
                     background:
                       e.status == "inprogress"
                         ? "orange"
-                        : e.status === "completed"
+                         : e.status === "completed"
                         ? "green"
                         : "grey",
                   }}
@@ -98,6 +98,7 @@ export const Tasklist = () => {
                     <br />
                     <span>Status :{e.status}</span>
                     <br />
+                    
                     <span>
                       <button
                         id="edit"

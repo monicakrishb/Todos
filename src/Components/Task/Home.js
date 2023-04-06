@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../styles/create.css";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/API";
@@ -14,17 +13,13 @@ export const Task = () => {
   const [userdata, setUserdata] = useState([]);
   const [priority, setPriority] = useState("");
   const [taskcolour, setTaskColour] = useState("");
-  const [duestatus, setDuestatus] = useState("");
   const navigate = useNavigate();
 
   const loadData = async () => {
     const response = await service.homeget().then((response) => {
       const filtered = response.data.map((val) => {
         const duedate = new Date(val.duedate);
-        const currentDate = new Date();
-        const dueDateTime = duedate.getTime();
-        const diff = dueDateTime - currentDate.getTime();
-        val.remaining = Math.round(diff / (1000 * 60 * 60 * 24));
+
         return val;
       });
       setUserdata(filtered);
@@ -48,8 +43,6 @@ export const Task = () => {
     console.log(taskcolour);
   };
 
-  const date = new Date();
-
   const dueStatus = () => {
     loadData();
   };
@@ -67,7 +60,7 @@ export const Task = () => {
         <h3>Create Your Task Here</h3>
         <div className="box addTask">
           <span
-            class="material-symbols-outlined"
+            class="material-symbols-outlined" id="add"
             onClick={() => {
               navigate("/create");
             }}
@@ -117,11 +110,13 @@ export const Task = () => {
           <div className="whole">
             {completedTask
               .filter((e) => {
-                if (e.useremail == sessionuser) {
+                if (e.useremail === sessionuser) {
                   return e;
                 }
               })
-              .map((e) => (
+              .map((e) =>{ 
+                console.log(e);
+                return(
                 <div
                   className="box"
                   style={{
@@ -140,25 +135,25 @@ export const Task = () => {
                     <span>{e.duedate}</span> <br />
                   </h4>
                 </div>
-              ))}
+              )})}
           </div>
         </div>
       </div>
-     <div>
-      <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
-       <select
-        className="form-control category"
-        id="category"
-        name="taskName"
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-      >
-        <option>Pending</option>
+      <div>
+        <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
+        <select
+          className="form-control category"
+          id="category"
+          name="taskName"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option>Pending</option>
 
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
       </div>
       <div className="high">
         <div className="task-container">
@@ -182,6 +177,7 @@ export const Task = () => {
                           : "grey",
                     }}
                   >
+                    
                     <h4>
                       <span>{e.taskname}</span> <br />
                       <span>{e.description}</span> <br />

@@ -2,7 +2,10 @@
   background-color: #2564cf;
 }
 .lab {
-  margin-left: 50px;
+  right: 50px;
+  top: 30px;
+  position: relative;
+  
 }
 
 .container {
@@ -53,9 +56,9 @@
 
 #task {
   position: relative;
+top: 30px;
+right: 35px;
 
-  margin-left: 70px;
-  right: 30px;
 }
 
 #priority {
@@ -84,7 +87,7 @@
 .allTask {
   background-color: aliceblue;
   width: 220px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 .allTask span {
   margin: 10px;
@@ -98,7 +101,8 @@
 }
 .priority {
   position: relative;
-  right: 70px;
+ right: 90px;
+ top: 40px;
 }
 #due {
   position: relative;
@@ -106,11 +110,13 @@
 }
 #pinput {
   position: relative;
-  right: 10px;
+  right: 78px;
+  top: 40px;
 }
 #select {
   position: relative;
-  right: 1px;
+ right: 68px;
+ top: 50px;
 }
 #date {
   position: relative;
@@ -118,16 +124,18 @@
 }
 #text {
   position: relative;
-  left: 32px;
+right: 35px;
+top: 40px;
 }
 .des {
   position: relative;
-  bottom: 62px;
-  right: 5px;
+  bottom: 30px;
+  right: 50px;
 }
 .status {
   position: relative;
-  right: 65px;
+  right: 80px;
+  top: 50px;
 }
 .statusnew {
   position: relative;
@@ -141,3 +149,47 @@
   position: relative;
   left: 10px;
 }
+#picker{
+  background-color: #2564cf;
+}
+.wholedate{
+  margin-left: 550px;
+  position: relative;
+  top: 200px;
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+
+.duedate{
+  position: relative;
+  top: 40px;
+  left: 33px;
+}
+#add{
+  cursor: pointer;
+}
+#fsubmit{
+  position: absolute;
+  right: 200px;
+  bottom: 130px;
+}
+.highandcomplete {
+  border: 1px solid black;
+  height: 700px;
+
+  }
+  /* .highandcomplete div {
+    margin: 10px;
+  } */
+  .whole {
+    display: flex;
+   border: 1px solid black;
+   margin: 70px;
+   height: 300px;
+  }
+  .highprio{
+   margin: 5px;
+  }

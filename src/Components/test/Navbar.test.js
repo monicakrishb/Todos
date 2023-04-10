@@ -1,8 +1,11 @@
 import { render } from "@testing-library/react";
 import Navbar from "../form/Navbar";
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from "react-router-dom";
 
-test('Register',async() => {
-    render(
-    <MemoryRouter><Navbar/></MemoryRouter>);
-  });
+test("Register", async () => {
+  render(
+    <MemoryRouter>
+      <Navbar />
+    </MemoryRouter>
+  );
+});

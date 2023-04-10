@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url("https://img.rawpixel.com/private/static/images/website/2022-05/rm218batch3-ning-25.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9d2b6886540dcc4fe1ce119c34534d50" );
+  height: 705px;
 }
 
 .App-logo {
@@ -37,15 +39,94 @@
   }
 }
 
-.box{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.box {
+  box-shadow: 0 4px 8px 0 rgba(217, 224, 219, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   width: 100px;
   border-radius: 10px;
   padding: 5px;
 }
 .box {
+  background-color: #ffffff;
   margin: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container tr,
+th,
+td {
+  background-color: rgb(245, 245, 245);
+}
+.container th {
+  margin: 5px 25px;
+}
+.container td,
+.container th {
+  padding: 10px;
+  border: 1px solid black;
+}
+#taskname {
+  font-size: large;
+  font-weight: 600;
+  width: 85px;
+}
+.listoftasks td{
+  width:89px ;
+}
+.listoftasks th{
+  width:85px ;
+}
+#taskDue{
+  width: 70px;
+}
+#taskpriority,#taskDate,#taskRemain,#taskStatus,#taskAction{
+  width: 85px;
+}
+
+/* #high{
+ margin-top: 300px;
+} */
+.high {
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partsec {
+  display: flex;
+  justify-content: center;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.cTask {
+  margin: 54px;
+}
+#complete {
+  display: flex;
+  flex-direction: column;
+}
+.task-container {
+  display: flex;
+}
+.listoftasks {
+  display: flex;
+}
+
+.editform form {
+  margin-top: 40px;
+}
+
+.listoftasks{
+  display: flex;
+flex-direction: column;
+
 }

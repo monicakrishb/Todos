@@ -18,17 +18,6 @@
   },
   "task": [
     {
-      "taskname": "html",
-      "description": "tags",
-      "priority": "high",
-      "duedate": "2023-04-12",
-      "status": "completed",
-      "taskcolour": "completed",
-      "useremail": "sindhu@gmail.com",
-      "currentDate": "2023-04-01T10:58:00.389Z",
-      "id": 1
-    },
-    {
       "taskname": "python",
       "description": "dictionary",
       "priority": "high",
@@ -36,7 +25,7 @@
       "status": "cancelled",
       "taskcolour": "cancelled",
       "useremail": "sindhu@gmail.com",
-      "currentDate": "2023-04-01T10:57:25.427Z",
+      "currentDate": "2023-04-06T04:48:47.867Z",
       "id": 2
     },
     {
@@ -62,17 +51,6 @@
       "id": 9
     },
     {
-      "taskname": "css",
-      "description": "Grid and Flex",
-      "priority": "high",
-      "duedate": "2023-04-05",
-      "status": "completed",
-      "taskcolour": "completed",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-03T08:49:43.773Z",
-      "id": 11
-    },
-    {
       "taskname": "Python",
       "description": "dictionary",
       "priority": "high",
@@ -84,136 +62,48 @@
       "id": 12
     },
     {
-      "taskname": "vnb nm,",
-      "description": "nm",
+      "taskname": "Html",
+      "description": "tags!",
       "priority": "high",
-      "duedate": "2023-03-28",
+      "duedate": "Tue Apr 11 2023",
       "status": "completed",
       "taskcolour": "completed",
       "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T04:52:47.897Z",
+      "currentDate": "2023-04-10T03:45:30.391Z",
       "id": 13
     },
     {
-      "taskname": "QWEDF",
-      "description": "QWED",
+      "taskname": "Dotnet",
+      "description": "csharp",
       "priority": "medium",
-      "duedate": "2023-04-04",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T05:42:30.938Z",
-      "id": 14
+      "duedate": "Fri Apr 07 2023",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
+      "useremail": "sindhu@gmail.com",
+      "currentDate": "2023-04-06T04:55:14.660Z",
+      "id": 26
     },
     {
-      "taskname": "qwqwd",
-      "description": "qwe",
-      "priority": "",
-      "duedate": "2023-03-15",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T05:50:05.763Z",
-      "id": 15
+      "taskname": "Css",
+      "description": "Borderbox!",
+      "priority": "medium",
+      "duedate": "Fri Apr 07 2023",
+      "status": "completed",
+      "taskcolour": "completed",
+      "useremail": null,
+      "currentDate": "2023-04-06T05:30:17.137Z",
+      "id": 27
     },
     {
-      "taskname": "",
-      "description": "aacsd ",
-      "priority": "",
-      "duedate": "2023-03-27",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T05:51:16.807Z",
-      "id": 16
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "06/04/2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T05:58:36.149Z",
-      "id": 17
-    },
-    {
-      "taskname": "sdd",
-      "description": "qqqqqqqqqqqqq",
+      "taskname": "css",
+      "description": "Grid & Flex",
       "priority": "high",
       "duedate": "Tue Apr 11 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T06:00:48.030Z",
-      "id": 18
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Tue Apr 11 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T06:04:31.536Z",
-      "id": 19
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Wed Apr 05 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T06:05:19.827Z",
-      "id": 20
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Tue Apr 11 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T06:05:31.970Z",
-      "id": 21
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Wed Apr 05 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T07:00:01.130Z",
-      "id": 22
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Sat Apr 15 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T07:49:00.250Z",
-      "id": 23
-    },
-    {
-      "taskname": "",
-      "description": "",
-      "priority": "",
-      "duedate": "Tue Apr 11 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-05T08:20:32.727Z",
-      "id": 24
+      "status": "completed",
+      "taskcolour": "completed",
+      "useremail": "shankari@gmail.com",
+      "currentDate": "2023-04-10T09:24:01.699Z",
+      "id": 28
     }
   ],
   "user": [
@@ -232,95 +122,11 @@
       "id": 4
     },
     {
-      "name": "Sindhuja",
-      "email": "sindhu@gmail.com",
-      "pass": "Sindhu@13",
+      "name": "Shankari",
+      "email": "shankari@gmail.com",
+      "pass": "Shankari@13",
       "mobile": "9003759065",
       "id": 5
-    },
-    {
-      "name": "Thenmozhi",
-      "email": "thenu@gmail.com",
-      "pass": "Thenu@13",
-      "mobile": "9003759065",
-      "id": 7
-    },
-    {
-      "name": "Chitra",
-      "email": "chitra@gmail.com",
-      "pass": "Chitra@13",
-      "mobile": "9003759065",
-      "id": 8
-    },
-    {
-      "name": "Krishna",
-      "email": "krishna@gmail.com",
-      "pass": "Krish@13",
-      "mobile": "9003759065",
-      "id": 9
-    },
-    {
-      "name": "sasi",
-      "email": "sasi@gmail.com",
-      "pass": "sasi@13",
-      "mobile": "9003759065",
-      "id": 10
-    },
-    {
-      "name": "lavanya",
-      "email": "lavanya@gmail.com",
-      "pass": "lavanya@13",
-      "mobile": "9003759065",
-      "id": 11
-    },
-    {
-      "name": "Bhavani",
-      "email": "bhavani@gmail.com",
-      "pass": "bavani@13",
-      "mobile": "9003759065",
-      "id": 12
-    },
-    {
-      "name": "Dillibai",
-      "email": "dillibai@gmail.com",
-      "pass": "Dilli@13",
-      "mobile": "9003759065",
-      "id": 13
-    },
-    {
-      "name": "",
-      "email": "",
-      "pass": "",
-      "mobile": "90037590655",
-      "id": 14
-    },
-    {
-      "name": "Saindhavi",
-      "email": "saindhavi@gmail.com",
-      "pass": "Moni@13",
-      "mobile": "9003759065",
-      "id": 15
-    },
-    {
-      "name": "gvhbjnkml",
-      "email": "monica@gmail.com",
-      "pass": "123",
-      "mobile": "xcyhlij;ok'pl[;yguhijok'pl[",
-      "id": 16
-    },
-    {
-      "name": "kijhgvfcd",
-      "email": "jhgfd@gmail.com",
-      "pass": "uhygfds",
-      "mobile": "njhgfd",
-      "id": 17
-    },
-    {
-      "name": "fghjhj",
-      "email": "monica@gmail.com",
-      "pass": "uhijokpl[",
-      "mobile": "zdfxfhjgkhlj;k",
-      "id": 18
     }
   ]
 }

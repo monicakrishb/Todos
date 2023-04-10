@@ -1,37 +1,52 @@
 import React, { useState } from "react";
-import service from "../../services/API";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 import { toast } from "react-toastify";
+import service from "../../services/API";
+import { passvalid } from "../../services/API";
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [mobile, setMobile] = useState("");
+  const [passerror, setPasserror] = useState("");
 
-  const navigate = useNavigate();
+  const usenavigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let obj = { name: name, email: email, pass: pass, mobile: mobile };
-    console.log(obj);
+    checkpassword();
+    if (passerror == " ") {
+      let obj = { name: name, email: email, pass: pass, mobile: mobile };
+      console.log(obj);
+      await service
+        .registerpost(obj)
 
-    // axios.post("http://localhost:8000/user",obj)
-    service
-      .registerpost(obj)
-
-      .then((res) => {
-        toast.success("Registered successfully");
-        success();
-      })
-      .catch((err) => {
-        toast.error("error");
-      });
+        .then((res) => {
+          toast.success("Registered successfully");
+          success();
+        })
+        .catch((err) => {
+          toast.error("error");
+        });
+    }
   };
   const success = () => {
-    navigate("/login");
+    usenavigate("/login");
   };
+
+  const passregex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+  function checkpassword() {
+    if (!passvalid(pass)) {
+      return setPasserror(
+        "must be use special charater,number,lower and upper case"
+      );
+    } else {
+      return setPasserror(" ");
+    }
+  }
 
   return (
     <div className="auth-form-container form">
@@ -43,6 +58,8 @@ export const Register = () => {
           name="name"
           onChange={(e) => setName(e.target.value)}
           id="name"
+          data-testid="username-test"
+          required
         />
         <label htmlFor="email">Email</label>
         <input
@@ -51,6 +68,7 @@ export const Register = () => {
           type="email"
           id="email"
           name="email"
+          required
         />
         <label htmlFor="password">Password</label>
         <input
@@ -59,7 +77,9 @@ export const Register = () => {
           type="password"
           id="password"
           name="password"
+          required
         />
+        {passerror}
         <label htmlFor="mobile">Mobile</label>
         <input
           value={mobile}
@@ -67,8 +87,9 @@ export const Register = () => {
           type="tele"
           id="mobile"
           name="mobile"
+          required
         />
-        <button type="submit">Register</button>
+        <button type="submit" data-testid={"clickme"} >Register</button>
       </form>
       <a href="/login" id="des">
         <button className="link-btn">

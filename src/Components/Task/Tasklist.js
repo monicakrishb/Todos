@@ -12,7 +12,6 @@ export const Tasklist = () => {
   }, []);
 
   const [userdata, setUserdata] = useState([]);
-
   const [taskcolour, setTaskColour] = useState("");
 
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ export const Tasklist = () => {
         return val;
       });
       setUserdata(filtered);
-      console.log(filtered);
     });
   };
 
@@ -65,6 +63,16 @@ export const Tasklist = () => {
       <div className="partsec">
         <div className="container">
           <div className="listoftasks">
+            <tr>
+              <th>Task Name</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Duedate</th>
+              <th>Remaining Days </th>
+              <th>Status</th>
+              <th>Action</th>
+              <th>Action</th>
+            </tr>
             {userdata
               .filter((e) => {
                 if (e.useremail == sessionuser) {
@@ -72,58 +80,49 @@ export const Tasklist = () => {
                 }
               })
               .map((e) => (
-                <div
-                  className="allTask"
-                  style={{
-                    background:
-                      e.status == "inprogress"
-                        ? "orange"
-                         : e.status === "completed"
-                        ? "green"
-                        : "grey",
-                  }}
-                >
-                  <span key={e.taskname}>
-                    {" "}
-                    <br />
-                    <span className="taskname">Task Name :{e.taskname}</span>
-                    <br />
-                    <span>Description :{e.description}</span>
-                    <br />
-                    <span> Priority :{e.priority}</span>
-                    <br />
-                    <span>Duedate :{e.duedate} </span>
-                    <br />
-                    <span>Remaining Days :{e.remaining}</span>
-                    <br />
-                    <span>Status :{e.status}</span>
-                    <br />
-                    
-                    <span>
-                      <button
-                        id="edit"
-                        className="editbutton material-symbols-outlined"
-                        onClick={() => {
-                          navigate("/task/edit/" + e.id);
-                        }}
-                      >
-                        Edit
-                      </button>
-                    </span>
-                    <span>
-                      <button
-                        id="edit"
-                        className="editbutton  material-symbols-outlined"
-                        onClick={() => {
-                          Delete(e.id);
-                        }}
-                      >
-                        {" "}
-                        Delete
-                      </button>
-                    </span>
-                  </span>
-                </div>
+                <tr>
+                  <td
+                    id="taskname"
+                    className="allTask"
+                    style={{
+                      background:
+                        e.status == "inprogress"
+                          ? "orange"
+                          : e.status === "completed"
+                          ? "green"
+                          : "grey",
+                    }}
+                  >
+                    {e.taskname}
+                  </td>
+                  <td id="taskDesc">{e.description}</td>
+                  <td id="taskpriority"> {e.priority}</td>
+                  <td id="taskDate">{e.duedate} </td>
+                  <td id="taskRemain">{e.remaining}</td>
+                  <td id="taskStatus">{e.status}</td>
+                  <td id="taskAction">
+                    <button
+                      id="edit"
+                      className="editbutton material-symbols-outlined"
+                      onClick={() => {
+                        navigate("/task/edit/" + e.id);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td id="taskAction">
+                    <button
+                      id="edit"
+                      className="editbutton  material-symbols-outlined"
+                      onClick={() => {
+                        Delete(e.id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
               ))}
           </div>
         </div>

@@ -63,7 +63,8 @@ export const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          placeholder="youremail@gmail.com"
+          placeholder="Enter email"
+          data-testid="username-test"
           id="email"
           name="email"
         />
@@ -72,7 +73,7 @@ export const Login = () => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           type="password"
-          placeholder="********"
+          placeholder="Enter assword"
           id="password"
           name="password"
         />

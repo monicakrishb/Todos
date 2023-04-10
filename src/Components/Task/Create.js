@@ -14,7 +14,6 @@ export const Create = () => {
   const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
-  const [duedate, setDuedate] = useState("");
   const useremail = sessionStorage.getItem("useremail");
   console.log(useremail);
 
@@ -31,39 +30,40 @@ export const Create = () => {
       currentDate: new Date(),
     };
     console.log(obj);
-    await service.createpost(obj);
-    navigate("/tasklist");
+    try {
+      await service.createpost(obj);
+      navigate("/tasklist");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <div className="wholedate">
       <div>
         <div id="form">
-       
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="lab" >Task Name</label>
+              <label className="lab">Task Name</label>
               <input
                 type="text"
                 value={taskname}
                 onChange={(e) => setTaskName(e.target.value)}
                 name="taskName"
                 id="task"
-                />
-            
+              />
             </div>
-            <div >
+            <div>
               <label className="des">Description</label>
               <textarea
                 rows="5"
-            
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 name="description"
                 id="text"
               ></textarea>
             </div>
-            <div className="form-group" >
+            <div className="form-group">
               <label className="priority">Priority</label>
               <select
                 value={priority}
@@ -71,33 +71,32 @@ export const Create = () => {
                 onChange={(e) => setPriority(e.target.value)}
                 id="pinput"
               >
-                <option>Pending</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
                 <option value="low">Low</option>
               </select>
             </div>
-            <div className="form-control" >
+            <div className="form-control">
               <label className="status">Status</label>
               <select
-               
+                disabled
                 id="select"
                 name="taskName"
                 onClick={(e) => setStatus(e.target.value)}
               >
-                <option>Pending</option>
+                <option value="pending">Pending</option>
                 <option value="completed">Completed</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="cancelled">Cancelled</option>
               </select>
             </div>
 
-            <div  className="form-control">
-              {/* <label className="lab" id="due"> */}
-            
-             <label className="duedate"><h4>Duedate</h4></label> 
+            <div className="form-control">
+              <label className="duedate">
+                <h4>Duedate</h4>
+              </label>
               <DatePicker
-            id="datepic"
+                id="datepic"
                 placeholderText="due date"
                 minDate={startDate}
                 dateFormat="MMMM d, yyyy"
@@ -106,18 +105,8 @@ export const Create = () => {
                 startDate={startDate}
                 onChange={(date) => setStartDate(date)}
               />
-              {/* <input
-                type="date" 
-                // min="2050-01-01" onfocus="this.min=new Date().toISOString().split('T')[0]" 
-
-                className="form-control"
-                value={duedate}
-                onChange={(e) => setDuedate(e.target.value)}
-                name="taskName"
-                id="date"
-              /> */}
             </div>
-            <input type="submit" />
+            <input type="submit" data-testid={"addme"} id="fsubmit" />
           </form>
         </div>
       </div>

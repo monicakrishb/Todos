@@ -8,6 +8,6 @@ const Logout = () => {
   useEffect(() => {
     navigate("/");
   }, []);
-};
+}; 
 
 export default Logout;

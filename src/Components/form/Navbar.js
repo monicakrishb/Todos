@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Nav() {
+export default function Navbar() {
   const value = sessionStorage.getItem("useremail");
   const navigate = useNavigate();
 
@@ -20,7 +20,9 @@ export default function Nav() {
             Home
           </Link>
         </div>
-        <Link to="/tasklist" className="nav-link">List</Link>
+        <Link to="/tasklist" className="nav-link">
+          List
+        </Link>
         {value === null ? (
           <div>
             <Link to="/register" className="nav-link">
@@ -30,7 +32,7 @@ export default function Nav() {
         ) : (
           <div>
             <Link onClick={handleClickss} className="nav-link">
-              Logout{" "}
+              Logout
             </Link>
           </div>
         )}
@@ -39,9 +41,9 @@ export default function Nav() {
             Login
           </Link>
         ) : (
-          ""
+        " "
         )}
-      </div>{" "}
+      </div>
     </div>
   );
 }

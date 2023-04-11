@@ -73,14 +73,14 @@ export const Login = () => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           type="password"
-          placeholder="Enter assword"
+          placeholder="Enter Password"
           id="password"
           name="password"
         />
-        <button type="submit">Log In</button>
+        <button type="submit" data-testid="submitme">Log In</button>
       </form>
       <a href="/register" id="logindesc">
-        <button className="link-btn">
+        <button className="link-btn" >
           Don't have an account? Register here.
         </button>
       </a>

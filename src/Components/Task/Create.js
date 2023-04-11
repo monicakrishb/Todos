@@ -4,6 +4,7 @@ import "../styles/create.css";
 import service from "../../services/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Edit } from "./Edit";
 
 export const Create = () => {
   const navigate = useNavigate();

@@ -65,11 +65,11 @@
       "taskname": "Html",
       "description": "tags!",
       "priority": "high",
-      "duedate": "Tue Apr 11 2023",
-      "status": "completed",
-      "taskcolour": "completed",
+      "duedate": "Wed Apr 12 2023",
+      "status": "",
+      "taskcolour": "",
       "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-10T03:45:30.391Z",
+      "currentDate": "2023-04-11T07:53:23.367Z",
       "id": 13
     },
     {
@@ -98,12 +98,34 @@
       "taskname": "css",
       "description": "Grid & Flex",
       "priority": "high",
-      "duedate": "Tue Apr 11 2023",
-      "status": "completed",
-      "taskcolour": "completed",
+      "duedate": "Thu Apr 13 2023",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
       "useremail": "shankari@gmail.com",
-      "currentDate": "2023-04-10T09:24:01.699Z",
+      "currentDate": "2023-04-11T03:49:35.502Z",
       "id": 28
+    },
+    {
+      "taskname": "Javascript",
+      "description": "Closure",
+      "priority": "medium",
+      "duedate": "Wed Apr 12 2023",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
+      "useremail": "monica@gmail.com",
+      "currentDate": "2023-04-11T03:46:41.029Z",
+      "id": 29
+    },
+    {
+      "taskname": "Python",
+      "description": "Dictionary",
+      "priority": "high",
+      "duedate": "Thu Apr 13 2023",
+      "status": "",
+      "taskcolour": "",
+      "useremail": "monica@gmail.com",
+      "currentDate": "2023-04-11T10:08:43.627Z",
+      "id": 30
     }
   ],
   "user": [

@@ -100,16 +100,22 @@ test("login check", async () => {
     </MemoryRouter>
   );
   act(() => { });
-
-  // screen.debug()
 });
 test("log check", async () => {
   const mock = new MockAdapter(axios);
-  mock.onGet("http://localhost:8000/user?email=${email}").networkError();
+  mock.onGet("http://localhost:8000/user?email=Dhanush").reply(200, user);
   render(
     <MemoryRouter>
       <Login />
     </MemoryRouter>
   );
+  const inputElement = screen.getByTestId("username-test");
+  fireEvent.change(inputElement, { target: { value: "Dhanush" } });
+  const password = screen.getByPlaceholderText("Enter Password");
+  fireEvent.change(password, { target: { value: "Dhanush" } });
+
   act(() => { });
+  await act(() => {});
+  screen.getAllByTestId("submitme")[0].click();
+  await act(() => {});
 });

@@ -65,4 +65,4 @@ test("test username input is valid", () => {
   const inputElement = screen.getByTestId("username-test");
   fireEvent.change(inputElement, { target: { value: "Monica" } });
   expect(screen.getByTestId("username-test")).toHaveValue("Monica");
-});
+}); 

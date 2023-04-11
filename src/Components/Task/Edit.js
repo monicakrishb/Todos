@@ -96,7 +96,6 @@ export const Edit = () => {
                 onChange={(e) => setPriority(e.target.value)}
                 id="pinput"
               >
-
                 <option value="pending">Pending</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>

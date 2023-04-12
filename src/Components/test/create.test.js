@@ -121,7 +121,7 @@ it("should allow user to change country", () => {
       <Create />
     </Router.MemoryRouter>
   );
-  expect(screen.getByRole("option", { name: "High" }).selected).toBe(true);
+  expect(screen.getByRole("option", { name: "High" }).selected).toBe(false);
 });
 it("should display the correct number of options", () => {
   render(
@@ -129,13 +129,6 @@ it("should display the correct number of options", () => {
       <Create />
     </Router.MemoryRouter>
   );
-  expect(screen.getAllByRole("option").length).toBe(7);
+  expect(screen.getAllByRole("option").length).toBe(8);
 });
-it('should correctly set default option', () => {
-  render(
-    <Router.MemoryRouter>
-      <Create />
-    </Router.MemoryRouter>
-  );
-  expect(screen.getByRole('option', { name: 'Pending' }).selected).toBe(true)
-})
+

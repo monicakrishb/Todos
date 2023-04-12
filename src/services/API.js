@@ -21,10 +21,5 @@ class HttpService {
     return axios.get(this.environment + "/task/" + v);
   };
 }
-
-export const passvalid = (pass) => {
-  const passregex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  return passregex.test(pass);
-};
 const service = new HttpService();
 export default service;

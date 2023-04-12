@@ -29,7 +29,7 @@ const task = [
     useremail: "sindhu@gmail.com",
     currentDate: "2023-04-06T04:48:47.867Z",
     id: 2, 
-  },
+  }, 
   {
     taskname: "Mongo",
     description: "crud operation",

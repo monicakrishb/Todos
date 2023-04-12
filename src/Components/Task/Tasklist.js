@@ -4,7 +4,7 @@ import "../styles/create.css";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/API";
 
-export const Tasklist = () => {
+export const Tasklist = ({ setTask }) => {
   useEffect(() => {
     loadData();
     colorChanger();
@@ -60,73 +60,71 @@ export const Tasklist = () => {
   return (
     <>
       <h1>List Of Tasks</h1>
-      <div className="partsec">
-        <div className="container">
-          <div className="listoftasks">
+
+      <table id="customers">
+        <tr>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Duedate</th>
+          <th>Remaining Days </th>
+          <th>Status</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+        {userdata
+          .filter((e) => {
+            if (e.useremail == sessionuser) {
+              return e;
+            }
+          })
+          .map((e) => (
             <tr>
-              <th>Task Name</th>
-              <th>Description</th>
-              <th>Priority</th>
-              <th>Duedate</th>
-              <th>Remaining Days </th>
-              <th>Status</th>
-              <th>Action</th>
-              <th>Action</th>
+              <td
+                id="taskname"
+                className="allTask"
+                style={{
+                  background:
+                    e.status == "inprogress"
+                      ? "orange"
+                      : e.status === "completed"
+                      ? "green"
+                      : "grey",
+                }}
+              >
+                {e.taskname}
+              </td>
+              <td className="tdata">{e.description}</td>
+              <td className="tdata"> {e.priority}</td>
+              <td className="tdata">{e.duedate} </td>
+              <td className="tdata">{e.remaining}</td>
+              <td className="tdata">{e.status}</td>
+              <td className="tdata">
+                <button
+                  id="edit"
+                  className="editbutton material-symbols-outlined"
+                  onClick={() => {
+                    setTask(e);
+                    navigate("/edit");
+                  }}
+                >
+                  Edit
+                </button>
+              </td>
+              <td className="tdata">
+                <button
+                  id="edit"
+                  className="editbutton  material-symbols-outlined"
+                  onClick={() => {
+                    Delete(e.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-            {userdata
-              .filter((e) => {
-                if (e.useremail == sessionuser) {
-                  return e;
-                }
-              })
-              .map((e) => (
-                <tr>
-                  <td
-                    id="taskname"
-                    className="allTask"
-                    style={{
-                      background:
-                        e.status == "inprogress"
-                          ? "orange"
-                          : e.status === "completed"
-                          ? "green"
-                          : "grey",
-                    }}
-                  >
-                    {e.taskname}
-                  </td>
-                  <td id="taskDesc">{e.description}</td>
-                  <td id="taskpriority"> {e.priority}</td>
-                  <td id="taskDate">{e.duedate} </td>
-                  <td id="taskRemain">{e.remaining}</td>
-                  <td id="taskStatus">{e.status}</td>
-                  <td id="taskAction">
-                    <button
-                      id="edit"
-                      className="editbutton material-symbols-outlined"
-                      onClick={() => {
-                        navigate("/task/edit/" + e.id);
-                      }}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                  <td id="taskAction">
-                    <button
-                      id="edit"
-                      className="editbutton  material-symbols-outlined"
-                      onClick={() => {
-                        Delete(e.id);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </div>
-        </div>
-      </div>
+          ))}
+      </table>
     </>
   );
 };

@@ -20,6 +20,7 @@ class HttpService {
   editget = (v) => {
     return axios.get(this.environment + "/task/" + v);
   };
+
 }
 const service = new HttpService();
 export default service;

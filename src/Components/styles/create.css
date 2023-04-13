@@ -167,6 +167,8 @@
 }
 #add {
   cursor: pointer;
+position: relative;
+bottom: 10px;
 }
 #fsubmit {
   position: absolute;

@@ -8,4 +8,4 @@ test("Register", async () => {
       <Navbar />
     </MemoryRouter>
   );
-});  
+});   

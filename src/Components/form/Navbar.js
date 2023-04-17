@@ -8,13 +8,26 @@ export default function Navbar() {
 
   const handleClickss = () => {
     sessionStorage.clear();
-    navigate("/");
+    setTimeout(() => {
+      navigate("/login");
+    }, 100);
   };
 
   return (
     <div id="nav">
-      <h4 id="todo">To Do</h4>
+      <h4 id="todo">ToDo</h4>
+
       <div className="flex">
+        <div
+          class="material-symbols-outlined"
+          id="add"
+          onClick={() => {
+            navigate("/create");
+          }}
+        >
+          add
+        </div>
+
         <div>
           <Link to="/task" className="nav-link">
             Home
@@ -41,7 +54,7 @@ export default function Navbar() {
             Login
           </Link>
         ) : (
-        " "
+          ""
         )}
       </div>
     </div>

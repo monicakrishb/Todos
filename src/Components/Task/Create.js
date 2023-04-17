@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/create.css";
 import service from "../../services/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../styles/create.css";
 
 export const Create = ({ data }) => {
   const navigate = useNavigate();
@@ -20,37 +20,73 @@ export const Create = ({ data }) => {
   console.log(data);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const obj = {
-      taskname: taskname,
-      description: description,
-      priority: priority,
-      duedate: startDate.toDateString(),
-      status: status,
-      taskcolour: status,
-      useremail: useremail,
-      currentDate: new Date(),
-    };
+    if (!data) {
+      const obj = {
+        taskname: taskname,
+        description: description,
+        priority: priority,
+        duedate: startDate.toDateString(),
+        status: status,
+        taskcolour: status,
+        useremail: useremail,
+        currentDate: new Date(),
+      };
+      const validate = (taskname) => {
+        if (!taskname) {
+          return "Taskname is required.";
+        }
+        if (taskname.length < 5) {
+          return "Taskname must be atleast 5 characters long.";
+        }
+        return "";
+      };
+      const errorMessage = validate(taskname);
+      if (errorMessage) {
+        setErrorMessage(errorMessage);
+        return;
+      }
+      console.log(obj);
+      try {
+        await service.createpost(obj);
+        navigate("/tasklist");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      const obj = {
+        taskname: taskname,
+        description: description,
+        priority: priority,
+        duedate: startDate.toDateString(),
+        status: status,
+        taskcolour: status,
+        useremail: useremail,
 
-    const validate = (taskname) => {
-      if (!taskname) {
-        return "Taskname is required.";
+        currentDate: new Date(),
+      };
+      console.log(obj);
+      try {
+        await service.editput(data.id, obj);
+        loadData();
+        navigate("/tasklist");
+      } catch (err) {
+        console.log(err);
       }
-      if (taskname.length < 5) {
-        return "Taskname must be atleast 5 characters long.";
-      }
-      return "";
-    };
-    const errorMessage = validate(taskname);
-    if (errorMessage) {
-      setErrorMessage(errorMessage);
-      return;
     }
-    console.log(obj);
-    try {
-      await service.createpost(obj);
-      navigate("/tasklist");
-    } catch (err) {
-      console.log(err);
+  };
+  const loadData = async () => {
+    if (data) {
+      try {
+        const response = await service.editget(data.id);
+        console.log(response.data);
+        setTaskName(response.data.taskname);
+        setDescription(response.data.description);
+        setPriority(response.data.priority);
+        setStartDate(response.data.toDateString());
+        setStatus(response.data.status);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   {
@@ -107,6 +143,7 @@ export const Create = ({ data }) => {
                   <label className="status">Status</label>
 
                   <select
+                    defaultValue={data && data.status}
                     id="select"
                     name="taskName"
                     onClick={(e) => setStatus(e.target.value)}
@@ -142,12 +179,12 @@ export const Create = ({ data }) => {
                 <DatePicker
                   id="datepic"
                   placeholderText="due date"
-                  minDate={startDate}
+                  minDate={data ? new Date(data.duedate) : startDate}
                   defaultValue={data && data.duedate}
                   dateFormat="MMMM d, yyyy"
-                  selected={startDate}
+                  selected={data ? new Date(data.duedate) : startDate}
                   selectsStart
-                  startDate={startDate}
+                  startDate={data ? new Date(data.duedate) : startDate}
                   onChange={(date) => setStartDate(date)}
                 />
               </div>

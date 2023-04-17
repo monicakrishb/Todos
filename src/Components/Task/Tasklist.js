@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/create.css";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/API";
+import "../styles/create.css";
 
 export const Tasklist = ({ setTask }) => {
   useEffect(() => {
     loadData();
-    colorChanger();
-    dueStatus();
   }, []);
 
   const [userdata, setUserdata] = useState([]);
-  const [taskcolour, setTaskColour] = useState("");
 
   const navigate = useNavigate();
   const sessionuser = sessionStorage.getItem("useremail");
@@ -29,23 +26,6 @@ export const Tasklist = ({ setTask }) => {
       });
       setUserdata(filtered);
     });
-  };
-
-  const colorChanger = () => {
-    if (userdata.status == "completed") {
-      setTaskColour("green");
-      console.log(taskcolour);
-    } else if (userdata.status == "inprogress") {
-      setTaskColour("orange");
-    } else {
-      setTaskColour("grey");
-    }
-
-    console.log(taskcolour);
-  };
-
-  const dueStatus = () => {
-    loadData();
   };
 
   const highPriorityTasks = userdata.filter((a) => {
@@ -94,18 +74,18 @@ export const Tasklist = ({ setTask }) => {
               >
                 {e.taskname}
               </td>
-              <td className="tdata">{e.description}</td>
-              <td className="tdata"> {e.priority}</td>
-              <td className="tdata">{e.duedate} </td>
-              <td className="tdata">{e.remaining}</td>
-              <td className="tdata">{e.status}</td>
-              <td className="tdata">
+              <td>{e.description}</td>
+              <td> {e.priority}</td>
+              <td>{e.duedate} </td>
+              <td>{e.remaining}</td>
+              <td>{e.status}</td>
+              <td>
                 <button
                   id="edit"
                   className="editbutton material-symbols-outlined"
                   onClick={() => {
                     setTask(e);
-                    navigate("/edit");
+                    navigate("/create");
                   }}
                 >
                   Edit

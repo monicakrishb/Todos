@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import TaskTable from "./TaskTable";
 import service from "../../services/API";
-import TaskTableHeader from "./TaskTableHeader";
-import "../styles/create.css";
 
-export const Task = () => {
+function Home() {
   useEffect(() => {
     loadData();
   }, []);
@@ -25,8 +24,8 @@ export const Task = () => {
     });
   };
 
-  const completedTask = userdata.filter((e) => {
-    return e.status == "completed";
+  const completedTask = userdata.filter((a) => {
+    return a.status == "completed";
   });
 
   const highPriorityTasks = userdata.filter((a) => {
@@ -36,135 +35,52 @@ export const Task = () => {
   const sessionuser = sessionStorage.getItem("useremail");
 
   return (
-    <>
-      <div className="routes">
-        <div className="center cTask"></div>
+    <div className="routes">
+      <div className="center cTask"></div>
+      <h3>High Priority Task</h3>
 
-        <h3>High Priority Task</h3>
+      <TaskTable
+        tasks={highPriorityTasks}
+        sessionuser={sessionuser}
+        priority="high"
+        headers={["Task Name", "Description", "Due Date", "Remaining Days", "Status"]}
+      />
+      <h3>Completed Task</h3>
 
-        <table id="customers">
-          <TaskTableHeader />
-
-          {highPriorityTasks
-            .filter((e) => {
-              if (e.useremail == sessionuser) {
-                return e;
-              }
-            })
-            .map((e) => (
-              <tr>
-                <td
-                  id="taskname"
-                  className="allTask"
-                  style={{
-                    background:
-                      e.status == "inprogress"
-                        ? "orange"
-                        : e.status === "completed"
-                        ? "green"
-                        : "grey",
-                  }}
-                >
-                  {e.taskname}
-                </td>
-                <td>{e.description}</td>
-                <td>{e.duedate} </td>
-                <td>{e.remaining}</td>
-                <td>{e.status}</td>
-              </tr>
-            ))}
-        </table>
-
-        <h3>Completed Task</h3>
-
-        <div>
-          <table id="customers">
-            <TaskTableHeader />
-
-            {completedTask
-              .filter((e) => {
-                if (e.useremail === sessionuser) {
-                  return e;
-                }
-              })
-              .map((e) => {
-                return (
-                  <tr>
-                    <td
-                      id="taskname"
-                      className="allTask"
-                      style={{
-                        background:
-                          e.status == "inprogress"
-                            ? "orange"
-                            : e.status === "completed"
-                            ? "green"
-                            : "grey",
-                      }}
-                    >
-                      {e.taskname}
-                    </td>
-                    <td>{e.description}</td>
-                    <td>{e.duedate} </td>
-                    <td>{e.remaining}</td>
-                    <td>{e.status}</td>
-                  </tr>
-                );
-              })}
-          </table>
-        </div>
-
-        <div>
-          <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
-
-          <select
-            className="form-control category"
-            id="category"
-            name="taskName"
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-          >
-            <option>Pending</option>
-
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </div>
-        <table id="customers">
-          <TaskTableHeader />
-
-          {userdata &&
-            userdata
-              .filter((e) => {
-                if (e.useremail == sessionuser && e.priority == priority) {
-                  return e;
-                }
-              })
-              .map((e) => (
-                <tr>
-                  <td
-                    id="taskname"
-                    className="allTask"
-                    style={{
-                      background:
-                        e.status == "inprogress"
-                          ? "orange"
-                          : e.status === "completed"
-                          ? "green"
-                          : "grey",
-                    }}
-                  >
-                    {e.taskname}
-                  </td>
-                  <td>{e.description}</td>
-                  <td>{e.duedate} </td>
-                  <td>{e.remaining}</td>
-                  <td>{e.status}</td>
-                </tr>
-              ))}
-        </table>
+      <div>
+        <TaskTable
+          tasks={completedTask}
+          sessionuser={sessionuser}
+          status="completed"
+          headers={["Task Name", "Description", "Due Date", "Remaining Days", "Status"]}
+        />
       </div>
-    </>
+
+      <div>
+        <h3 style={{ color: "black" }}>Categorize Your Tasks Here!</h3>
+
+        <select
+          className="form-control category"
+          id="category"
+          name="taskName"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option>Pending</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+
+      <TaskTable
+        tasks={userdata}
+        sessionuser={sessionuser}
+        priority={priority}
+        headers={["Task Name", "Description", "Due Date", "Remaining Days", "Status"]}
+      />
+    </div>
   );
-};
+}
+
+export default Home;

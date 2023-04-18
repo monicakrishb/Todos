@@ -62,70 +62,59 @@
       "id": 12
     },
     {
-      "taskname": "Html",
-      "description": "tags!",
+      "taskname": "Javascript",
+      "description": "Closure",
       "priority": "high",
-      "duedate": "Wed Apr 12 2023",
-      "status": "",
-      "taskcolour": "",
-      "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-11T07:53:23.367Z",
-      "id": 13
-    },
-    {
-      "taskname": "Dotnet",
-      "description": "csharp",
-      "priority": "medium",
-      "duedate": "Fri Apr 07 2023",
-      "status": "inprogress",
-      "taskcolour": "inprogress",
-      "useremail": "sindhu@gmail.com",
-      "currentDate": "2023-04-06T04:55:14.660Z",
-      "id": 26
-    },
-    {
-      "taskname": "Css",
-      "description": "Borderbox!",
-      "priority": "medium",
-      "duedate": "Fri Apr 07 2023",
+      "duedate": "Fri Apr 21 2023",
       "status": "completed",
       "taskcolour": "completed",
-      "useremail": null,
-      "currentDate": "2023-04-06T05:30:17.137Z",
-      "id": 27
+      "useremail": "sneha@gmail.com",
+      "currentDate": "2023-04-17T03:57:14.148Z",
+      "id": 77
     },
     {
-      "taskname": "css",
-      "description": "Grid & Flex",
-      "priority": "high",
-      "duedate": "Thu Apr 13 2023",
+      "taskname": "Javascript",
+      "description": "useEffect!",
+      "priority": "low",
+      "duedate": "Thu Apr 20 2023",
       "status": "inprogress",
       "taskcolour": "inprogress",
-      "useremail": "shankari@gmail.com",
-      "currentDate": "2023-04-11T03:49:35.502Z",
-      "id": 28
+      "useremail": "monica@gmail.com",
+      "currentDate": "2023-04-18T10:17:18.848Z",
+      "id": 78
     },
     {
       "taskname": "Javascript",
       "description": "Closure",
-      "priority": "medium",
-      "duedate": "Wed Apr 12 2023",
+      "priority": "high",
+      "duedate": "Thu Apr 20 2023",
+      "status": "completed",
+      "taskcolour": "completed",
+      "useremail": "monica@gmail.com",
+      "currentDate": "2023-04-18T10:17:05.411Z",
+      "id": 79
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "React Hooks",
+      "priority": "high",
+      "duedate": "Thu Apr 20 2023",
       "status": "inprogress",
       "taskcolour": "inprogress",
       "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-11T03:46:41.029Z",
-      "id": 29
+      "currentDate": "2023-04-18T06:17:54.580Z",
+      "id": 80
     },
     {
-      "taskname": "Python",
-      "description": "Dictionary",
+      "taskname": "Javascript",
+      "description": "Borderbox",
       "priority": "high",
-      "duedate": "Thu Apr 13 2023",
-      "status": "",
-      "taskcolour": "",
+      "duedate": "Wed Apr 19 2023",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
       "useremail": "monica@gmail.com",
-      "currentDate": "2023-04-11T10:08:43.627Z",
-      "id": 30
+      "currentDate": "2023-04-18T10:41:48.032Z",
+      "id": 81
     }
   ],
   "user": [
@@ -149,6 +138,27 @@
       "pass": "Shankari@13",
       "mobile": "9003759065",
       "id": 5
+    },
+    {
+      "name": "Sneha",
+      "email": "sneha@gmail.com",
+      "pass": "Sneha@13",
+      "mobile": "9003759065",
+      "id": 6
+    },
+    {
+      "name": "Monica",
+      "email": "monica@gmail.com",
+      "pass": "Moni@13",
+      "mobile": "1234567890",
+      "id": 7
+    },
+    {
+      "name": "Monica",
+      "email": "moni@gmailcom",
+      "pass": "Moni@13",
+      "mobile": "9003759065",
+      "id": 8
     }
   ]
 }

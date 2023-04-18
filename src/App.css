@@ -1,7 +1,15 @@
+body{
+  background-image: url("https://img.freepik.com/premium-photo/spring-daisy-flower-purple-background-minimal-aesthetic-summer-flower-concept_492182-463.jpg?w=740 ");
+  background-repeat: repeat;
+  background-size: 500px;
+}
 .App {
   text-align: center;
-  background-image: url("https://img.rawpixel.com/private/static/images/website/2022-05/rm218batch3-ning-25.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9d2b6886540dcc4fe1ce119c34534d50" );
-  height: 705px;
+  position: relative;
+
+
+  /* top: 50px; */
+  /* background-repeat: no-repeat; */
 }
 
 .App-logo {
@@ -74,16 +82,20 @@ td {
   font-weight: 600;
   width: 85px;
 }
-.listoftasks td{
-  width:89px ;
+.listoftasks td {
+  width: 89px;
 }
-.listoftasks th{
-  width:85px ;
+.listoftasks th {
+  width: 85px;
 }
-#taskDue{
+#taskDue {
   width: 70px;
 }
-#taskpriority,#taskDate,#taskRemain,#taskStatus,#taskAction{
+#taskpriority,
+#taskDate,
+#taskRemain,
+#taskStatus,
+#taskAction {
   width: 85px;
 }
 
@@ -125,7 +137,19 @@ td {
   margin-top: 40px;
 }
 
-.listoftasks{
+.listoftasks {
   display: flex;
-flex-direction: column;
+  flex-direction: column;
+}
+.routes {
+  padding: 10px;
+  width: 1300px;
+  position: relative;
+  left: 50px;
+}
+#err {
+  color: red;
+  height: 30px;
+  width: 40px;
+  background-color: vilolet;
 }

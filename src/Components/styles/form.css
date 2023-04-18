@@ -1,20 +1,12 @@
-/* .App {
-  text-align: center;
-display: flex;
-} */
-
 .auth-form-container,
 .login-form,
 .register-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
 }
-.auth-form-container{
-  background-color: #2196f3;
-
-
+.auth-form-container {
+  background-color:#a96daa;
+  color: white;
 
 }
 
@@ -33,7 +25,8 @@ label {
   padding: 0.25rem 0;
 }
 
-.login-form input ,.register-form input{
+.login-form input,
+.register-form input {
   margin: 0.5rem 0;
   padding: 1rem;
   border: none;
@@ -41,7 +34,8 @@ label {
   width: 250px;
 }
 
-.login-form button,.register-form button   {
+.login-form button,
+.register-form button {
   border: none;
   background-color: white;
   padding: 20px;
@@ -54,7 +48,8 @@ label {
   cursor: pointer;
   color: #7439db;
 }
-.login-form,.register-form{
+.login-form,
+.register-form {
   height: 300px;
   margin: 30px;
 }
@@ -70,19 +65,17 @@ label {
   padding: 30px;
 }
 
-
-#des{
-position: relative;
-top: 1px;
-right: 2px;
+#des {
+  position: relative;
+  top: 1px;
+  right: 2px;
 }
-.auth-form-container{
+.auth-form-container {
   height: 220px;
- width: 350px;
+  width: 350px;
 }
 .auth-form-container,
-.register-form{
+.register-form {
   height: 550px;
- width: 350px;
+  width: 350px;
 }
-

@@ -2,7 +2,10 @@
   display: flex;
   width: 1450px;
   height: 20px;
-  background-color: #2564cf;
+  /* background-color: #106EBE; */
+  /* background-color: #B4009E; */
+  background-color:#881798;
+
   padding: 10px 10px 30px 10px;
   align-items: center;
 }
@@ -38,11 +41,10 @@
   align-items: center;
 }
 #add {
-  background-color: #2564cf;
   color: white;
   cursor: pointer;
   position: relative;
   top: 10px;
-  right: 1120px;
+  right: 1080px;
   
 }

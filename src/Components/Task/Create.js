@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/create.css";
 
-export const Create = ({ data }) => {
+export const Create = ({ data, setTask }) => {
   const navigate = useNavigate();
 
   const [taskname, setTaskName] = useState(data && data.taskname);
@@ -26,7 +26,7 @@ export const Create = ({ data }) => {
         description: description,
         priority: priority,
         duedate: startDate.toDateString(),
-        status: status,
+        status: "pending",
         taskcolour: status,
         useremail: useremail,
         currentDate: new Date(),
@@ -68,6 +68,7 @@ export const Create = ({ data }) => {
       try {
         await service.editput(data.id, obj);
         loadData();
+        setTask(null);
         navigate("/tasklist");
       } catch (err) {
         console.log(err);
@@ -82,7 +83,8 @@ export const Create = ({ data }) => {
         setTaskName(response.data.taskname);
         setDescription(response.data.description);
         setPriority(response.data.priority);
-        setStartDate(response.data.toDateString());
+        setStartDate(new Date(response.data.duedate));
+
         setStatus(response.data.status);
       } catch (err) {
         console.log(err);

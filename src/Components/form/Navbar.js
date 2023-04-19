@@ -6,7 +6,7 @@ export default function Navbar() {
   const value = sessionStorage.getItem("useremail");
   const navigate = useNavigate();
 
-  const handleClickss = () => {
+  const handleClick = () => {
     sessionStorage.clear();
     setTimeout(() => {
       navigate("/login");
@@ -19,7 +19,7 @@ export default function Navbar() {
 
       <div className="flex">
         <div
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           id="add"
           onClick={() => {
             navigate("/create");
@@ -33,9 +33,11 @@ export default function Navbar() {
             Home
           </Link>
         </div>
+
         <Link to="/tasklist" className="nav-link">
           List
         </Link>
+
         {value === null ? (
           <div>
             <Link to="/register" className="nav-link">
@@ -44,15 +46,18 @@ export default function Navbar() {
           </div>
         ) : (
           <div>
-            <Link onClick={handleClickss} className="nav-link">
+            <Link onClick={handleClick} className="nav-link">
               Logout
             </Link>
           </div>
         )}
+
         {value === null ? (
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
+          <div>
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </div>
         ) : (
           ""
         )}

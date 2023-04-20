@@ -45,7 +45,7 @@ test("email input field should accept email", () => {
     <MemoryRouter>
       <Login />
     </MemoryRouter>
-  );
+  ); 
   const email = screen.getByPlaceholderText("Enter email");
   expect(email.value).not.toMatch("monicaa@gmail.com");
 });

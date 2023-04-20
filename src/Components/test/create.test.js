@@ -1,10 +1,10 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen} from "@testing-library/react";
+
 import MockAdapter from "axios-mock-adapter";
 import { MemoryRouter } from "react-router-dom";
 import { Create } from "../Task/Create";
 import axios from "axios";
 import * as Router from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 test("create", async () => {
   render(
@@ -48,17 +48,6 @@ const task = [
     id: 9,
   },
   {
-    taskname: "css",
-    description: "Grid and Flex",
-    priority: "high",
-    duedate: "Fri Apr 14 2023",
-    status: "inprogress",
-    taskcolour: "inprogress",
-    useremail: "monica@gmail.com",
-    currentDate: "2023-04-06T09:42:02.191Z",
-    id: 11,
-  },
-  {
     taskname: "Python",
     description: "dictionary",
     priority: "high",
@@ -70,42 +59,142 @@ const task = [
     id: 12,
   },
   {
-    taskname: "Html",
-    description: "tags!",
-    priority: "low",
-    duedate: "Sat Apr 08 2023",
+    taskname: "Javascript",
+    description: "Hoisting",
+    priority: "high",
+    duedate: "Thu Apr 13 2023",
+    status: "cancelled",
+    taskcolour: "cancelled",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-13T09:14:20.231Z",
+    id: 55,
+  },
+  {
+    taskname: "Javascript",
+    description: "Hoisting",
+    priority: "high",
+    duedate: "Thu Apr 20 2023",
+    status: "cancelled",
+    taskcolour: "cancelled",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T06:55:24.303Z",
+    id: 57,
+  },
+  {
+    taskname: "Javascript",
+    description: "Hoisting",
+    priority: "medium",
+    duedate: "Sat May 06 2023",
+    status: "inprogress",
+    taskcolour: "inprogress",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-13T03:52:45.695Z",
+    id: 58,
+  },
+  {
+    taskname: "Javascript",
+    description: "Symbol",
+    priority: "high",
+    duedate: "Mon Apr 24 2023",
+    status: "inprogress",
+    taskcolour: "inprogress",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T06:56:15.873Z",
+    id: 59,
+  },
+  {
+    taskname: "htmll",
+    description: "script",
+    priority: "high",
+    duedate: "Thu Apr 27 2023",
+    status: "cancelled",
+    taskcolour: "cancelled",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T11:02:38.128Z",
+    id: 63,
+  },
+  {
+    taskname: "jsbnm",
+    description: "script",
+    priority: "medium",
+    duedate: "Sun Apr 23 2023",
     status: "completed",
     taskcolour: "completed",
     useremail: "monica@gmail.com",
-    currentDate: "2023-04-08T06:14:51.829Z",
-    id: 13,
+    currentDate: "2023-04-12T11:03:03.282Z",
+    id: 64,
   },
   {
-    taskname: "Dotnet",
-    description: "csharp",
+    taskname: "Javascript",
+    description: "Hoisting",
     priority: "medium",
-    duedate: "Fri Apr 07 2023",
+    duedate: "Wed Apr 26 2023",
+    status: "cancelled",
+    taskcolour: "cancelled",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T11:22:32.928Z",
+    id: 66,
+  },
+  {
+    taskname: "jsbnm",
+    description: "script",
+    priority: "high",
+    duedate: "Fri Apr 28 2023",
     status: "inprogress",
     taskcolour: "inprogress",
-    useremail: "sindhu@gmail.com",
-    currentDate: "2023-04-06T04:55:14.660Z",
-    id: 26,
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T12:06:16.192Z",
+    id: 70,
   },
   {
-    taskname: "Css",
-    description: "Borderbox!",
+    taskname: "Javascript",
+    description: "Map",
     priority: "medium",
-    duedate: "Fri Apr 07 2023",
+    duedate: "Wed Apr 19 2023",
     status: "completed",
     taskcolour: "completed",
-    useremail: null,
-    currentDate: "2023-04-06T05:30:17.137Z",
-    id: 27,
-  }, 
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T12:06:51.416Z",
+    id: 72,
+  },
+  {
+    taskname: "Javascript",
+    description: "Hoisting",
+    priority: "medium",
+    duedate: "Thu Apr 13 2023",
+    status: "inprogress",
+    taskcolour: "inprogress",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T12:07:27.237Z",
+    id: 73,
+  },
+  {
+    taskname: "Javascript",
+    description: "Hoisting",
+    priority: "medium",
+    duedate: "Wed Apr 26 2023",
+    status: "inprogress",
+    taskcolour: "inprogress",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-12T12:07:42.859Z",
+    id: 74,
+  },
+  {
+    taskname: "Python",
+    description: "Tuples!",
+    priority: "medium",
+    duedate: "Sat Apr 15 2023",
+    status: "completed",
+    taskcolour: "completed",
+    useremail: "monica@gmail.com",
+    currentDate: "2023-04-13T03:54:21.626Z",
+    id: 75,
+  },
 ];
 test("async check create", async () => {
   const mock = new MockAdapter(axios);
   mock.onPost("http://localhost:8000/task/").reply(200, [{}]);
+
   render(
     <Router.MemoryRouter>
       <Create />
@@ -131,4 +220,24 @@ it("should display the correct number of options", () => {
   );
   expect(screen.getAllByRole("option").length).toBe(8);
 });
+test('renders task data in fields when editing', () => {
+  const taskData = {
+    id: 1,
+    taskname: 'Test Task',
+    description: 'Test Description',
+    priority: 'medium',
+    status: 'pending',
+    duedate: '2023-04-30T00:00:00.000Z',
+    taskcolour: 'pending',
+    useremail: 'test@example.com',
+    currentDate: '2023-04-20T08:20:00.000Z',
+  };
+  render(<Router.MemoryRouter><Create data={taskData} setTask={() => {}} /></Router.MemoryRouter>);
+  expect(screen.getByDisplayValue('Test Task')).toBeInTheDocument();
+  expect(screen.getByDisplayValue('Test Description')).toBeInTheDocument();
+  expect(screen.getByDisplayValue('Medium')).toBeInTheDocument();
+  expect(screen.getByDisplayValue('Pending')).toBeInTheDocument();
+});
+
+
 

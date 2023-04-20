@@ -1,14 +1,14 @@
 import { act, render } from "@testing-library/react";
 import MockAdapter from "axios-mock-adapter";
 import { MemoryRouter } from "react-router-dom";
-import { Task } from "../Task/Home";
+import Home from "../Task/Home";
 import axios from "axios";
 import * as Router from "react-router-dom";
 
 test("Tasklist", async () => {
   render(
     <MemoryRouter>
-      <Task />
+      <Home />
     </MemoryRouter>
   );
 });
@@ -24,12 +24,12 @@ const task = [
     description: "dictionary",
     priority: "high",
     duedate: "2023-04-12",
-    status: "cancelled", 
+    status: "cancelled",
     taskcolour: "cancelled",
     useremail: "sindhu@gmail.com",
     currentDate: "2023-04-06T04:48:47.867Z",
-    id: 2, 
-  },  
+    id: 2,
+  },
   {
     taskname: "Mongo",
     description: "crud operation",
@@ -114,7 +114,7 @@ test("async check", async () => {
 
   render(
     <Router.MemoryRouter>
-      <Task />
+      <Home />
     </Router.MemoryRouter>
   );
   await act(() => {});

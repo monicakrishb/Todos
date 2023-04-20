@@ -18,7 +18,6 @@ export const Register = () => {
     let obj = { name: name, email: email, pass: pass, mobile: mobile };
     await service
       .registerpost(obj)
-
       .then((res) => {
         toast.success("Registered successfully");
         success();
@@ -27,9 +26,11 @@ export const Register = () => {
         toast.error("error");
       });
   };
+
   const success = () => {
     usenavigate("/login");
   };
+
   return (
     <div className="auth-form-container form">
       <h2>Register</h2>
@@ -50,7 +51,7 @@ export const Register = () => {
           type="email"
           id="email"
           name="email"
-          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
         <label htmlFor="password">Password</label>
         <input
@@ -59,19 +60,19 @@ export const Register = () => {
           type="password"
           id="password"
           name="password"
-          required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
         />
-
         <label htmlFor="mobile">Mobile</label>
         <input
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
-          type="tele"
+          type="tel"
           id="mobile"
           name="mobile"
           required
         />
-        <button type="submit" data-testid={"clickme"}>
+        <button type="submit" data-testid="clickme">
           Register
         </button>
       </form>

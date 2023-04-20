@@ -9,7 +9,7 @@ export default function Navbar() {
   const handleClick = () => {
     sessionStorage.clear();
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
     }, 100);
   };
 

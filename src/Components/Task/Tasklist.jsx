@@ -36,9 +36,13 @@ export const Tasklist = ({ setTask }) => {
     "Action",
   ];
 
-  function Delete(id) {
-    service.delete(id);
-    loadData();
+  async function Delete(id) {
+    try {
+      await service.delete(id);
+      loadData();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -73,7 +77,9 @@ export const Tasklist = ({ setTask }) => {
                           ? "orange"
                           : e.status === "completed"
                           ? "green"
-                          : e.status==="pending"? "white":"grey"
+                          : e.status === "pending"
+                          ? "white"
+                          : "grey",
                     }}
                   >
                     {e.taskname}

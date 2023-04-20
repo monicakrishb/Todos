@@ -98,9 +98,6 @@ td {
   width: 85px;
 }
 
-/* #high{
- margin-top: 300px;
-} */
 .high {
   background-color: rgb(245, 245, 245);
   display: flex;
@@ -145,6 +142,7 @@ td {
   width: 1300px;
   position: relative;
   left: 50px;
+  bottom: 35px;
 }
 #err {
   color: red;

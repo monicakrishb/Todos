@@ -124,7 +124,7 @@
 }
 .des {
   position: relative;
-  bottom: 30px;
+  top: 5px;
   right: 50px;
 }
 .status {
@@ -201,7 +201,6 @@
   width: 100%;
   position: relative;
   left: 1px;
-
 }
 
 #task td,
@@ -222,11 +221,6 @@
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  /* background-color:  #0078d4; */
-  /* background-color: #BA8ABB; */
   background-color: #a96daa;
-  /* background-color:#BA8ABB; */
-  /* background-color: #be8db8; */
-
   color: white;
 }

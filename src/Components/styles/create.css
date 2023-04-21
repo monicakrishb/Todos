@@ -151,7 +151,7 @@
   margin-left: 550px;
   position: relative;
   top: 200px;
-  height: 400px;
+  height: 300px;
   width: 400px;
   border: 1px solid black;
   padding: 10px;
@@ -159,8 +159,8 @@
 
 .duedate {
   position: relative;
-  top: 40px;
-  left: 33px;
+  top: 70px;
+  right: 130px;
 }
 #add {
   cursor: pointer;
@@ -169,16 +169,14 @@
 }
 #fsubmit {
   position: absolute;
-  right: 200px;
-  bottom: 130px;
+  left: 320px;
+  bottom: 20px;
 }
 .highandcomplete {
   border: 1px solid black;
   height: 700px;
 }
-/* .highandcomplete div {
-    margin: 10px;
-  } */
+
 .whole {
   display: flex;
   border: 1px solid black;
@@ -223,4 +221,9 @@
   text-align: center;
   background-color: #a96daa;
   color: white;
+}
+#datepic {
+  position: relative;
+  top: 50px;
+  left: 3px;
 }

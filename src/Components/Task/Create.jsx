@@ -61,6 +61,20 @@ export const Create = ({ data, setTask }) => {
         useremail: useremail,
         currentDate: new Date(),
       };
+      const validate = (taskname) => {
+        if (!taskname) {
+          return "Taskname is required.";
+        }
+        if (taskname.length < 5) {
+          return "Taskname must be atleast 5 characters long.";
+        }
+        return "";
+      };
+      const errorMessage = validate(taskname);
+      if (errorMessage) {
+        setErrorMessage(errorMessage);
+        return;
+      }
       try {
         await service.editput(data.id, obj);
         loadData();
@@ -120,7 +134,7 @@ export const Create = ({ data, setTask }) => {
                   onChange={(e) => setDescription(e.target.value)}
                   name="description"
                   id="text"
-                  maxLength="20"
+                  required
                 ></textarea>
               </div>
               <div className="form-group">
@@ -130,6 +144,7 @@ export const Create = ({ data, setTask }) => {
                   name="priority"
                   onChange={(e) => setPriority(e.target.value)}
                   id="pinput"
+                  required
                 >
                   <option value="pending">Pending</option>
 
@@ -140,12 +155,13 @@ export const Create = ({ data, setTask }) => {
               </div>
               {data ? (
                 <div className="form-control">
-                  <label className="status">Status*</label>
+                  <label className="status">Status</label>
 
                   <select
                     defaultValue={data && data.status}
                     id="select"
                     name="taskName"
+                    required
                     onClick={(e) => setStatus(e.target.value)}
                   >
                     <option value="pending">Pending</option>
@@ -157,7 +173,7 @@ export const Create = ({ data, setTask }) => {
               ) : (
                 <div className="form-control">
                   <label className="status" htmlFor="status">
-                    Status*
+                    Status
                   </label>
 
                   <select
@@ -176,12 +192,9 @@ export const Create = ({ data, setTask }) => {
               )}
 
               <div className="form-control">
-                <label className="duedate">
-                  <h4>Duedate</h4>
-                </label>
+                <label className="duedate">Duedate</label>
                 <DatePicker
                   id="datepic"
-                  placeholderText="Select a due date"
                   minDate={data ? new Date(data.duedate) : startDate}
                   defaultValue={data && data.duedate}
                   dateFormat="MMMM d, yyyy"

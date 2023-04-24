@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const value = sessionStorage.getItem("useremail");
+  const userEmail =
+    sessionStorage.getItem("useremail") || localStorage.getItem("user");
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -28,6 +31,13 @@ export default function Navbar() {
           add
         </div>
 
+        <div>
+          {userEmail && (
+            <span className="nav-link" id="welcome">
+              Welcome, {userEmail}!
+            </span>
+          )}
+        </div>
         <div>
           <Link to="/task" className="nav-link">
             Home

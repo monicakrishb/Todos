@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/API";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "../styles/create.css";
 
 export const Create = ({ data, setTask }) => {
@@ -12,7 +10,12 @@ export const Create = ({ data, setTask }) => {
   const [description, setDescription] = useState(data && data.description);
   const [priority, setPriority] = useState(data && data.priority);
   const [status, setStatus] = useState(data && data.status);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    data && data.duedate
+      ? new Date(data.duedate).toISOString().slice(0, 10)
+      : new Date().toISOString().slice(0, 10)
+  );
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const useremail = sessionStorage.getItem("useremail");
@@ -21,7 +24,7 @@ export const Create = ({ data, setTask }) => {
     taskname: taskname,
     description: description,
     priority: priority,
-    duedate: startDate.toDateString(),
+    duedate: startDate,
     status: data ? status : "pending",
     taskcolour: status,
     useremail: useremail,
@@ -151,7 +154,7 @@ export const Create = ({ data, setTask }) => {
                 </label>
 
                 <select
-                  disabled
+                  // disabled
                   id="select"
                   name="taskName"
                   onClick={(e) => setStatus(e.target.value)}
@@ -167,15 +170,12 @@ export const Create = ({ data, setTask }) => {
 
             <div className="form-control">
               <label className="duedate">Duedate</label>
-              <DatePicker
+              <input
+                type="date"
                 id="datepic"
-                minDate={data ? new Date(data.duedate) : startDate}
-                defaultValue={data && data.duedate}
-                dateFormat="MMMM d, yyyy"
-                selected={startDate}
-                selectsStart
-                startDate={data ? new Date(data.duedate) : startDate}
-                onChange={(date) => setStartDate(date)}
+                min={new Date().toISOString().slice(0, 10)}
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
             <input type="submit" data-testid={"addme"} id="fsubmit" />

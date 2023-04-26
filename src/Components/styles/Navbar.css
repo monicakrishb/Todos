@@ -2,13 +2,13 @@
   display: flex;
   width: 1450px;
   height: 20px;
-  background-color:#881798;
-
+  background-color: #881798;
   padding: 10px 10px 30px 10px;
   align-items: center;
 }
 #nav div {
   margin: 20px;
+  position: relative;
 }
 
 #nav {
@@ -43,10 +43,8 @@
   cursor: pointer;
   position: relative;
   top: 10px;
-  right:850px;
-  
 }
-#welcome{
+#welcome {
   position: relative;
   top: 6px;
   font-style: italic;

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "../styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,6 +8,12 @@ export default function Navbar() {
     sessionStorage.getItem("useremail") || localStorage.getItem("user");
 
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   const user = sessionStorage.getItem("useremail");
+  //   if (user) {
+  //     navigate("/task"); // Redirect to home page if user is already registered
+  //   }
+  // }, [navigate]);
 
   const handleClick = () => {
     sessionStorage.clear();
@@ -19,9 +25,7 @@ export default function Navbar() {
   return (
     <div id="nav">
       <h4 id="todo">ToDo</h4>
-
-      <div className="flex">
-        <div
+ <span
           className="material-symbols-outlined"
           id="add"
           onClick={() => {
@@ -29,7 +33,9 @@ export default function Navbar() {
           }}
         >
           add
-        </div>
+        </span>
+      <div className="flex">
+       
 
         <div>
           {userEmail && (
@@ -57,7 +63,7 @@ export default function Navbar() {
         ) : (
           <div>
             <Link onClick={handleClick} className="nav-link">
-              Logout
+              LogOut
             </Link>
           </div>
         )}

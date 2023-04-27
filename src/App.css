@@ -114,6 +114,7 @@ td {
 }
 .cTask {
   margin: 54px;
+
 }
 #complete {
   display: flex;
@@ -139,7 +140,11 @@ td {
   width: 1300px;
   position: relative;
   left: 50px;
-  bottom: 35px;
+ top: 160px;
+}
+#pie{
+  margin-top: 170px;
+
 }
 #err {
   color: red;

@@ -1,90 +1,89 @@
 import React, { useState, useEffect, useRef } from "react";
 import TaskTable from "./TaskTable";
 import service from "../../services/API";
-import * as d3 from "d3";
-import { pie } from "d3";
+// import * as d3 from "d3";
+// import { pie } from "d3";
 
 function Home() {
   const [userdata, setUserdata] = useState([]);
   const [priority, setPriority] = useState("");
-  const [data, setData] = useState([
-    { property: "Completed", value: 0 },
-    { property: "In Progress", value: 0 },
-    { property: "Cancelled", value: 0 },
-    { property: "Pending", value: 0 },
-  ]);
-  const svgRef = useRef();
-  useEffect(() => {
-    const completedCount = userdata.filter((a) => {
-      return (
-        a.status === "completed" &&
-        a.useremail == sessionStorage.getItem("useremail")
-      );
-    }).length;
-    console.log(completedCount);
-    const inProgressCount = userdata.filter((a) => {
-      console.log(
-        a.status === "inprogress" &&
-          a.useremail == sessionStorage.getItem("useremail")
-      );
-      return (
-        a.status === "inprogress" &&
-        a.useremail == sessionStorage.getItem("useremail")
-      );
-    }).length;
-    const cancelledCount = userdata.filter((a) => {
-      return (
-        a.status === "cancelled" &&
-        a.useremail == sessionStorage.getItem("useremail")
-      );
-    }).length;
-    const pendingCount = userdata.filter((a) => {
-      return (
-        a.status === "pending" &&
-        a.useremail == sessionStorage.getItem("useremail")
-      );
-    }).length;
+  // const [data, setData] = useState([
+  //   { property: "Completed", value: 0 },
+  //   { property: "In Progress", value: 0 },
+  //   { property: "Cancelled", value: 0 },
+  //   { property: "Pending", value: 0 },
+  // ]);
+  // const svgRef = useRef();
+  // useEffect(() => {
+  //   const completedCount = userdata.filter((a) => {
+  //     return (
+  //       a.status === "completed" &&
+  //       a.useremail == sessionStorage.getItem("useremail")
+  //     );
+  //   }).length;
+  //   console.log(completedCount);
+  //   const inProgressCount = userdata.filter((a) => {
+  //     console.log(
+  //       a.status === "inprogress" &&
+  //         a.useremail == sessionStorage.getItem("useremail")
+  //     );
+  //     return (
+  //       a.status === "inprogress" &&
+  //       a.useremail == sessionStorage.getItem("useremail")
+  //     );
+  //   }).length;
+  //   const cancelledCount = userdata.filter((a) => {
+  //     return (
+  //       a.status === "cancelled" &&
+  //       a.useremail == sessionStorage.getItem("useremail")
+  //     );
+  //   }).length;
+  //   const pendingCount = userdata.filter((a) => {
+  //     return (
+  //       a.status === "pending" &&
+  //       a.useremail == sessionStorage.getItem("useremail")
+  //     );
+  //   }).length;
 
-    setData([
-      { property: `Completed ${completedCount}%`, value: completedCount },
-      { property: `In Progress ${inProgressCount}%`, value: inProgressCount },
-      { property: `Cancelled ${cancelledCount}%`, value: cancelledCount },
-      { property: `Pending ${pendingCount}%`, value: pendingCount },
-    ]);
-  }, [userdata]);
+  //   setData([
+  //     { property: `Completed ${completedCount}%`, value: completedCount },
+  //     { property: `In Progress ${inProgressCount}%`, value: inProgressCount },
+  //     { property: `Cancelled ${cancelledCount}%`, value: cancelledCount },
+  //     { property: `Pending ${pendingCount}%`, value: pendingCount },
+  //   ]);
+  // }, [userdata]);
 
-  useEffect(() => {
-    const w = 500;
-    const h = 500;
-    const radius = w / 2;
-    const svg = d3
-      .select(svgRef.current)
-      .attr("width", w)
-      .attr("height", h)
-      .style("overflow", "visible");
-    const formattedData = pie().value((d) => d.value)(data);
-    const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
-    const color = d3.scaleOrdinal().range(d3.schemeSet2);
+  // useEffect(() => {
+  //   const w = 500;
+  //   const h = 500;
+  //   const radius = w / 2;
+  //   const svg = d3
+  //     .select(svgRef.current)
+  //     .attr("width", w)
+  //     .attr("height", h)
+  //     .style("overflow", "visible");
+  //   const formattedData = pie().value((d) => d.value)(data);
+  //   const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
+  //   const color = d3.scaleOrdinal().range(d3.schemeSet2);
 
+  //   svg
+  //     .selectAll()
+  //     .data(formattedData)
+  //     .join("path")
+  //     .attr("d", arcGenerator)
+  //     .attr("fill", (d) => color(d.data.property))
+  //     .style("opacity", 1);
 
-    svg
-      .selectAll()
-      .data(formattedData)
-      .join("path")
-      .attr("d", arcGenerator)
-      .attr("fill", (d) => color(d.data.property))
-      .style("opacity", 1);
-
-    svg
-      .selectAll()
-      .data(formattedData)
-      .join("text")
-      .text((d) => d.data.property)
-      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
-      .style("text-anchor", "middle")
-      .style("font-size", "16px")
-      .style("fill", "white");
-  }, [data]);
+  //   svg
+  //     .selectAll()
+  //     .data(formattedData)
+  //     .join("text")
+  //     .text((d) => d.data.property)
+  //     .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+  //     .style("text-anchor", "middle")
+  //     .style("font-size", "16px")
+  //     .style("fill", "white");
+  // }, [data]);
 
   const loadData = async () => {
     const response = await service.homeget();
@@ -116,9 +115,9 @@ function Home() {
   return (
     <>
       <div className="routes">
-        <div id="pie">
+        {/* <div id="pie">
           <svg ref={svgRef}></svg>
-        </div>
+        </div> */}
         <div className="center cTask"></div>
         <h2 id="high-priority-tasks">High Priority Task</h2>
 

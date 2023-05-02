@@ -13,8 +13,6 @@ export const Tasklist = ({ setTask }) => {
     {
       property: "Completed",
       value: 0,
-      weeklyCompleted: 0,
-      monthlyCompleted: 0,
     },
 
     { property: "In Progress", value: 0 },
@@ -22,31 +20,6 @@ export const Tasklist = ({ setTask }) => {
     { property: "Pending", value: 0 },
   ]);
   const svgRef = useRef();
-  const WeeklycompletedDate = [];
-  const monthlycompletedDate = [];
-
-  const WeeklyinprogressDate = [];
-  const monthlyinprogressDate = [];
-
-  const Weeklycancelled = [];
-  const monthlycancelled = [];
-
-  const Weeklypending = [];
-  const monthlypending = [];
-
-  const today = new Date();
-  const startOfWeek = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() - today.getDay()
-  );
-  const endOfWeek = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + (6 - today.getDay())
-  );
-  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
   useEffect(() => {
     const completedCount = userdata.filter((a) => {
@@ -55,21 +28,6 @@ export const Tasklist = ({ setTask }) => {
         a.useremail == sessionStorage.getItem("useremail")
       ) {
         console.log(a.duedate);
-
-        if (
-          new Date(a.duedate) >= startOfWeek &&
-          new Date(a.duedate) <= endOfWeek
-        ) {
-          console.log("weekly");
-          WeeklycompletedDate.push(a.duedate);
-          console.log(WeeklycompletedDate.length);
-        } else if (
-          new Date(a.duedate) >= startOfMonth &&
-          new Date(a.duedate) <= endOfMonth
-        ) {
-          console.log("monthly");
-          monthlycompletedDate.push(a.duedate);
-        }
       }
       return (
         a.status === "completed" &&
@@ -79,24 +37,10 @@ export const Tasklist = ({ setTask }) => {
     console.log(completedCount);
     const inProgressCount = userdata.filter((a) => {
       if (
-        a.status === "inprogress" &&
+        a.status === "cancelled" &&
         a.useremail == sessionStorage.getItem("useremail")
       ) {
         console.log(a.duedate);
-        WeeklyinprogressDate.push(a.duedate);
-        console.log(WeeklyinprogressDate);
-
-        if (
-          new Date(a.duedate) >= startOfWeek &&
-          new Date(a.duedate) <= endOfWeek
-        ) {
-          WeeklyinprogressDate.push(a.duedate);
-        } else if (
-          new Date(a.duedate) >= startOfMonth &&
-          new Date(a.duedate) <= endOfMonth
-        ) {
-          monthlyinprogressDate.push(a.duedate);
-        }
       }
       return (
         a.status === "inprogress" &&
@@ -109,18 +53,6 @@ export const Tasklist = ({ setTask }) => {
         a.useremail == sessionStorage.getItem("useremail")
       ) {
         console.log(a.duedate);
-        console.log(Weeklycancelled);
-        if (
-          new Date(a.duedate) >= startOfWeek &&
-          new Date(a.duedate) <= endOfWeek
-        ) {
-          Weeklycancelled.push(a.duedate);
-        } else if (
-          new Date(a.duedate) >= startOfMonth &&
-          new Date(a.duedate) <= endOfMonth
-        ) {
-          monthlycancelled.push(a.duedate);
-        }
       }
       return (
         a.status === "cancelled" &&
@@ -129,35 +61,19 @@ export const Tasklist = ({ setTask }) => {
     }).length;
     const pendingCount = userdata.filter((a) => {
       if (
-        a.status === "cancelled" &&
-        a.useremail == sessionStorage.getItem("useremail")
+        a.status === "pending" &&
+        a.useremail === sessionStorage.getItem("useremail")
       ) {
         console.log(a.duedate);
-        console.log(Weeklypending);
-        if (
-          new Date(a.duedate) >= startOfWeek &&
-          new Date(a.duedate) <= endOfWeek
-        ) {
-          Weeklypending.push(a.duedate);
-        } else if (
-          new Date(a.duedate) >= startOfMonth &&
-          new Date(a.duedate) <= endOfMonth
-        ) {
-          monthlypending.push(a.duedate);
-        }
+        return true;
       }
-      return (
-        a.status === "pending" &&
-        a.useremail == sessionStorage.getItem("useremail")
-      );
+      return false;
     }).length;
 
     setData([
       {
         property: completedCount == 0 ? "" : `Completed ${completedCount}%`,
         value: completedCount,
-        weeklyCompleted: WeeklycompletedDate.length,
-        monthlyCompleted: monthlycompletedDate.length,
       },
       {
         property: inProgressCount == 0 ? "" : `In Progress ${inProgressCount}%`,
@@ -242,25 +158,11 @@ export const Tasklist = ({ setTask }) => {
     }
   }
 
-  console.log(WeeklycompletedDate);
-  console.log(monthlycompletedDate);
   return (
     <>
       <div className="routes">
         <div id="pie">
           <svg ref={svgRef} id="ref"></svg>
-          <table>
-            <tr>
-              <th>Performance</th>
-              <th>Weekly count</th>
-              <th>Monthly count</th>
-            </tr>
-            <tr>
-              <td>Completed</td>
-              <td>{data[0].weeklyCompleted}</td>
-              <td>{data[0].monthlyCompleted}</td>
-            </tr>
-          </table>
         </div>
         <div className="center cTask"></div>
         <h2 id="tasklist">List Of Tasks</h2>

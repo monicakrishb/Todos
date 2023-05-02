@@ -12,7 +12,9 @@ export const Create = ({ data, setTask }) => {
   const [status, setStatus] = useState(data && data.status);
   const [startDate, setStartDate] = useState(
     data && data.duedate
-      ? new Date(data.duedate).toISOString().slice(0, 10)
+      ? new Date(Math.max(new Date(data.duedate), new Date()))
+          .toISOString()
+          .slice(0, 10)
       : new Date().toISOString().slice(0, 10)
   );
 

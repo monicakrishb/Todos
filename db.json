@@ -117,26 +117,92 @@
       "id": 82
     },
     {
-      "taskname": "Javascript",
-      "description": "Closure",
+      "taskname": "Reactjs",
+      "description": "diffing",
+      "priority": "medium",
+      "duedate": "2025-05-14",
+      "status": "cancelled",
+      "taskcolour": "cancelled",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-02T09:57:13.575Z",
+      "id": 93
+    },
+    {
+      "taskname": "cvbkln",
+      "description": "cvbk;l'[k;",
       "priority": "high",
-      "duedate": "Fri Apr 28 2023",
+      "duedate": "2023-05-07",
       "status": "completed",
       "taskcolour": "completed",
-      "useremail": "bavani@gmail.com",
-      "currentDate": "2023-04-21T06:38:32.811Z",
-      "id": 83
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-02T06:51:52.214Z",
+      "id": 94
     },
     {
       "taskname": "Reactjs",
       "description": "Hooks",
       "priority": "high",
-      "duedate": "Thu Apr 27 2023",
+      "duedate": "2023-05-05",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-02T05:18:50.629Z",
+      "id": 96
+    },
+    {
+      "taskname": "sdfghj",
+      "description": "sdfghj",
+      "priority": "medium",
+      "duedate": "2025-10-15",
+      "status": "completed",
+      "taskcolour": "completed",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-02T09:21:05.674Z",
+      "id": 98
+    },
+    {
+      "taskname": "kjhgfcx",
+      "description": "kjhgfcxz",
+      "priority": "high",
+      "duedate": "2025-08-15",
+      "status": "pending",
+      "taskcolour": "pending",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-02T11:03:09.868Z",
+      "id": 99
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "Hooks",
+      "priority": "high",
+      "duedate": "2024-05-04",
       "status": "completed",
       "taskcolour": "completed",
       "useremail": "bavani@gmail.com",
-      "currentDate": "2023-04-21T07:00:51.553Z",
-      "id": 84
+      "currentDate": "2023-05-02T11:23:36.363Z",
+      "id": 101
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "Reconciliation",
+      "priority": "high",
+      "duedate": "2023-05-05",
+      "status": "pending",
+      "taskcolour": "pending",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-03T03:17:09.781Z",
+      "id": 102
+    },
+    {
+      "taskname": "Javascript",
+      "description": "symbol",
+      "priority": "medium",
+      "duedate": "2023-05-06",
+      "status": "pending",
+      "taskcolour": "pending",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-04T03:54:44.984Z",
+      "id": 103
     }
   ],
   "user": [
@@ -181,6 +247,27 @@
       "pass": "Sandha@13",
       "mobile": "9003759065",
       "id": 13
+    },
+    {
+      "name": "Sanvi",
+      "email": "sanvi@gmail.com",
+      "pass": "Sanvi@13",
+      "mobile": "9003759065",
+      "id": 14
+    },
+    {
+      "name": "Pranavi",
+      "email": "pranavi@gmail.com",
+      "pass": "Pranavi@13",
+      "mobile": "9003759065",
+      "id": 15
+    },
+    {
+      "name": "Sreenidhi",
+      "email": "sree@gmail.com",
+      "pass": "Monica@13",
+      "mobile": "9003759065",
+      "id": 16
     }
   ]
 }

@@ -8,10 +8,8 @@ const authUser = () => {
   var user;
   if (store) {
     user = { login: true };
-    console.log(user);
   } else {
     user = { login: false };
-    console.log(user);
   }
 
   return user && user.login;

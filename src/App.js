@@ -9,6 +9,9 @@ import ProtectUser from "./Components/ProtectedRoute/Protect";
 import { ToastContainer } from "react-toastify";
 import { createContext, useState } from "react";
 import Home from "./Components/Task/Home";
+import Dropdown from "./Components/Task/Performance";
+
+
 
 export const EditContext = createContext({});
 
@@ -26,6 +29,8 @@ function App() {
         <Route element={<ProtectUser />}>
           <Route path="/tasklist" element={<Tasklist setTask={setTask} />} />
           <Route path="/task" element={<Home />} />
+          <Route path="/perform" element={<Dropdown />} />
+
           <Route
             path="/create"
             element={<Create data={task} setTask={setTask} />}

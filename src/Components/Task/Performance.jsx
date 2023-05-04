@@ -21,10 +21,14 @@ export default function Dropdown() {
 
   const [selectedYear, setSelectedYear] = useState(2023);
   const [selectedWeek, setSelectedWeek] = useState(1);
+  
 
   useEffect(
     () => {
+      
+      console.log("user",userdata)
       const completedCount = userdata.filter((a) => {
+        console.log("a",a)
         if (
           a.status === "completed" &&
           selectedYear === Number(a.duedate.slice(0, 4)) &&
@@ -36,7 +40,7 @@ export default function Dropdown() {
           );
         }
       }).length;
-      console.log(completedCount);
+      console.log("completed",completedCount);
       const inProgressCount = userdata.filter((a) => {
         if (
           a.status === "inprogress" &&
@@ -197,11 +201,32 @@ export default function Dropdown() {
   };
 
   const handleWeekChange = (event) => {
+    console.log("event", event.target.value)
     setWeekNumber(event.target.value);
   };
 
   const [thisweek,setThisweek]=useState(" ");
-  const datadate=thisweek.slice(6,9)
+  const datadate=thisweek.slice(6,9);
+
+  const getWeekDatess = (year, week) => {
+    const date = new Date(year, 0, 1 + (week - 1) * 7);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+    const monday = new Date(date.setDate(diff));
+    const sunday = new Date(date.setDate(diff + 6));
+  
+    return { monday, sunday };
+  }
+
+  const { monday, sunday } = getWeekDatess(2023,1);
+  console.log('Monday:', monday);
+  console.log('Sunday:', sunday);
+
+  
+
+
+
+
   return (
     <div>
       <div className="routes">

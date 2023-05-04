@@ -147,22 +147,14 @@ export default function Dropdown() {
     });
     setUserdata(filtered);
   };
-
-  const getWeekDates = (year, week) => {
+  function getWeekDates(year, week) {
     const date = new Date(year, 0, 1 + (week - 1) * 7);
-    const startDate = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate()
-    );
-    const endDate = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate() + 6
-    );
-
+    const startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 6);
+  
     return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
-  };
+  }
+  
 
   const weekOptions = [];
   for (let i = 1; i <= 52; i++) {
@@ -201,8 +193,7 @@ export default function Dropdown() {
   };
 
   const handleWeekChange = (event) => {
-    console.log("event", event.target.value)
-    setWeekNumber(event.target.value);
+    setSelectedWeek(parseInt(event.target.value));
   };
 
   const [thisweek,setThisweek]=useState(" ");
@@ -262,8 +253,8 @@ export default function Dropdown() {
           >
            
         
-            {weekOptions}
-          </select>
+           {weekOptions}        
+             </select>
         </div>
 
         {/* .......new */}

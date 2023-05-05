@@ -21,14 +21,12 @@ export default function Dropdown() {
 
   const [selectedYear, setSelectedYear] = useState(2023);
   const [selectedWeek, setSelectedWeek] = useState(1);
-  
 
   useEffect(
     () => {
-      
-      console.log("user",userdata)
+      console.log("user", userdata);
       const completedCount = userdata.filter((a) => {
-        console.log("a",a)
+        console.log("a", a);
         if (
           a.status === "completed" &&
           selectedYear === Number(a.duedate.slice(0, 4)) &&
@@ -40,7 +38,7 @@ export default function Dropdown() {
           );
         }
       }).length;
-      console.log("completed",completedCount);
+      console.log("completed", completedCount);
       const inProgressCount = userdata.filter((a) => {
         if (
           a.status === "inprogress" &&
@@ -101,6 +99,7 @@ export default function Dropdown() {
     [selectedYear],
     [selectedWeek]
   );
+  
   useEffect(() => {
     const w = 500;
     const h = 500;
@@ -134,7 +133,7 @@ export default function Dropdown() {
   }, [data]);
   useEffect(() => {
     loadData();
-  }, []);
+  }, [selectedYear,selectedWeek]);
   const loadData = async () => {
     const response = await service.homeget();
     const filtered = response.data.map((val) => {
@@ -149,12 +148,19 @@ export default function Dropdown() {
   };
   function getWeekDates(year, week) {
     const date = new Date(year, 0, 1 + (week - 1) * 7);
-    const startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    const endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 6);
-  
+    const startDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    const endDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + 6
+    );
+
     return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
   }
-  
 
   const weekOptions = [];
   for (let i = 1; i <= 52; i++) {
@@ -189,32 +195,39 @@ export default function Dropdown() {
     const sunday = new Date(year, 0, (weekNumber - 1) * 7 + 8);
     const monday = new Date(year, 0, (weekNumber - 1) * 7 + 2);
     const saturday = new Date(year, 0, (weekNumber - 1) * 7 + 7);
-    return { sunday, saturday,monday };
+    return { sunday, saturday, monday };
   };
 
   const handleWeekChange = (event) => {
     setSelectedWeek(parseInt(event.target.value));
   };
 
-  const [thisweek,setThisweek]=useState(" ");
-  const datadate=thisweek.slice(6,9);
+  const [thisweek, setThisweek] = useState(" ");
+  const datadate = thisweek.slice(6, 9);
 
-  const getWeekDatess = (year, week) => {
-    const date = new Date(year, 0, 1 + (week - 1) * 7);
-    const day = date.getDay();
-    const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
-    const monday = new Date(date.setDate(diff));
-    const sunday = new Date(date.setDate(diff + 6));
-  
-    return { monday, sunday };
+  // const getWeekDatess = (year, week) => {
+  //   const date = new Date(year, 0, 1 + (week - 1) * 7);
+  //   const day = date.getDay();
+  //   const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+  //   const monday = new Date(date.setDate(diff));
+  //   const sunday = new Date(date.setDate(diff + 6));
+
+  //   return { monday, sunday };
+  // }
+
+  // const { monday, sunday } = getWeekDatess(2023,1);
+  // console.log('Monday:', monday);
+  // console.log('Sunday:', sunday);
+  function getWeekNumber(date) {
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return [
+      d.getUTCFullYear(),
+      Math.ceil(((d - yearStart) / 86400000 + 1) / 7),
+    ];
   }
-
-  const { monday, sunday } = getWeekDatess(2023,1);
-  console.log('Monday:', monday);
-  console.log('Sunday:', sunday);
-
-  
-
 
 
 
@@ -239,10 +252,16 @@ export default function Dropdown() {
           {selectedYear}
         </select>
 
-        <input type="week" value={thisweek} onChange={(e)=>{setThisweek(e.target.value)}} />
+        <input
+          type="week"
+          value={thisweek}
+          onChange={(e) => {
+            setThisweek(e.target.value);
+          }}
+        />
 
         {thisweek}
-        <br/>
+        <br />
         {datadate}
         <div>
           <label htmlFor="week-select">Week:</label>
@@ -251,10 +270,8 @@ export default function Dropdown() {
             value={selectedWeek}
             onChange={handleWeekChange}
           >
-           
-        
-           {weekOptions}        
-             </select>
+            {weekOptions}
+          </select>
         </div>
 
         {/* .......new */}
@@ -266,14 +283,12 @@ export default function Dropdown() {
             value={weekNumber}
             onChange={handleWeekChange}
           /> */}
-
-<input
+          <input
             type="number"
             id="week-number"
             value={weekNumber}
             onChange={handleWeekChange}
-          />
-          {" "}
+          />{" "}
           {weekNumber && (
             <div>
               <p>Sunday: {getDates().sunday.toLocaleDateString()}</p>
@@ -283,7 +298,7 @@ export default function Dropdown() {
           )}
         </div>
 
-        <br/>
+        <br />
 
         <div id="pie">
           <svg ref={svgRef} id="ref"></svg>

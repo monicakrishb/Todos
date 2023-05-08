@@ -4,6 +4,7 @@ import { pie } from "d3";
 import { useRef } from "react";
 import { useEffect } from "react";
 import service from "../../services/API";
+import moment from "moment";
 
 export default function Dropdown() {
   const [userdata, setUserdata] = useState([]);
@@ -19,87 +20,120 @@ export default function Dropdown() {
   ]);
   const svgRef = useRef();
 
-  const [selectedYear, setSelectedYear] = useState(2023);
-  const [selectedWeek, setSelectedWeek] = useState(1);
+  const [selectedYear, setSelectedYear] = useState(2022);
+  const [selectedWeek, setSelectedWeek] = useState({});
 
-  useEffect(
-    () => {
-      console.log("user", userdata);
-      const completedCount = userdata.filter((a) => {
-        console.log("a", a);
-        if (
+  useEffect(() => {
+    console.log("user", userdata);
+    const completedCount = userdata.filter((a) => {
+      console.log("a", a);
+      if (
+        a.status === "completed" &&
+        selectedYear === Number(a.duedate.slice(0, 4)) &&
+        a.useremail == sessionStorage.getItem("useremail")
+      ) {
+        return (
           a.status === "completed" &&
-          selectedYear === Number(a.duedate.slice(0, 4)) &&
           a.useremail == sessionStorage.getItem("useremail")
-        ) {
-          return (
-            a.status === "completed" &&
-            a.useremail == sessionStorage.getItem("useremail")
-          );
-        }
-      }).length;
-      console.log("completed", completedCount);
-      const inProgressCount = userdata.filter((a) => {
-        if (
+        );
+      }
+    }).length;
+    console.log("completed", completedCount);
+    const inProgressCount = userdata.filter((a) => {
+      if (
+        a.status === "inprogress" &&
+        selectedYear === Number(a.duedate.slice(0, 4)) &&
+        a.useremail == sessionStorage.getItem("useremail")
+      ) {
+        return (
           a.status === "inprogress" &&
-          selectedYear === Number(a.duedate.slice(0, 4)) &&
           a.useremail == sessionStorage.getItem("useremail")
-        ) {
-          return (
-            a.status === "inprogress" &&
-            a.useremail == sessionStorage.getItem("useremail")
-          );
-        }
-      }).length;
-      const cancelledCount = userdata.filter((a) => {
-        if (
+        );
+      }
+    }).length;
+    const cancelledCount = userdata.filter((a) => {
+      if (
+        a.status === "cancelled" &&
+        selectedYear === Number(a.duedate.slice(0, 4)) &&
+        a.useremail == sessionStorage.getItem("useremail")
+      ) {
+        return (
           a.status === "cancelled" &&
-          selectedYear === Number(a.duedate.slice(0, 4)) &&
           a.useremail == sessionStorage.getItem("useremail")
-        ) {
-          return (
-            a.status === "cancelled" &&
-            a.useremail == sessionStorage.getItem("useremail")
-          );
-        }
-      }).length;
-      const pendingCount = userdata.filter((a) => {
-        if (
+        );
+      }
+    }).length;
+    const pendingCount = userdata.filter((a) => {
+      if (
+        a.status === "pending" &&
+        selectedYear === Number(a.duedate.slice(0, 4)) &&
+        a.useremail == sessionStorage.getItem("useremail")
+      ) {
+        return (
           a.status === "pending" &&
-          selectedYear === Number(a.duedate.slice(0, 4)) &&
           a.useremail == sessionStorage.getItem("useremail")
-        ) {
-          return (
-            a.status === "pending" &&
-            a.useremail == sessionStorage.getItem("useremail")
-          );
-        }
-      }).length;
+        );
+      }
+    }).length;
+    setData([
+      {
+        property: completedCount == 0 ? "" : `Completed ${completedCount}%`,
+        value: completedCount,
+      },
+      {
+        property: inProgressCount == 0 ? "" : `In Progress ${inProgressCount}%`,
+        value: inProgressCount,
+      },
+      {
+        property: cancelledCount == 0 ? "" : `Cancelled ${cancelledCount}%`,
+        value: cancelledCount,
+      },
+      {
+        property: pendingCount == 0 ? "" : `Pending ${pendingCount}%`,
+        value: pendingCount,
+      },
+    ]);
+  }, [selectedYear]);
 
-      setData([
-        {
-          property: completedCount == 0 ? "" : `Completed ${completedCount}%`,
-          value: completedCount,
-        },
-        {
-          property:
-            inProgressCount == 0 ? "" : `In Progress ${inProgressCount}%`,
-          value: inProgressCount,
-        },
-        {
-          property: cancelledCount == 0 ? "" : `Cancelled ${cancelledCount}%`,
-          value: cancelledCount,
-        },
-        {
-          property: pendingCount == 0 ? "" : `Pending ${pendingCount}%`,
-          value: pendingCount,
-        },
-      ]);
-    },
-    [selectedYear],
-    [selectedWeek]
-  );
-  
+  useEffect(() => {
+    const filteredData = userdata.filter((d) => {
+      const dueDate = new Date(d.duedate);
+      const startDate = new Date(selectedWeek.startDate);
+      const endDate = new Date(selectedWeek.endDate);
+      return dueDate >= startDate && dueDate <= endDate;
+    });
+    const completedCount = filteredData.filter(
+      ({ status }) => status === "completed"
+    ).length;
+    const inProgressCount = filteredData.filter(
+      ({ status }) => status === "inprogress"
+    ).length;
+    const cancelledCount = filteredData.filter(
+      ({ status }) => status === "cancelled"
+    ).length;
+    const pendingCount = filteredData.filter(
+      ({ status }) => status === "pending"
+    ).length;
+    setData([
+      {
+        property: completedCount == 0 ? "" : `Completed ${completedCount}%`,
+        value: completedCount,
+      },
+      {
+        property: inProgressCount == 0 ? "" : `In Progress ${inProgressCount}%`,
+        value: inProgressCount,
+      },
+      {
+        property: cancelledCount == 0 ? "" : `Cancelled ${cancelledCount}%`,
+        value: cancelledCount,
+      },
+      {
+        property: pendingCount == 0 ? "" : `Pending ${pendingCount}%`,
+        value: pendingCount,
+      },
+    ]);
+  }, [selectedWeek]);
+
   useEffect(() => {
     const w = 500;
     const h = 500;
@@ -112,6 +146,7 @@ export default function Dropdown() {
     const formattedData = pie().value((d) => d.value)(data);
     const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
     const color = d3.scaleOrdinal().range(d3.schemeSet2);
+    // const noData = data.find(({value}) => value !== 0);--->
 
     svg
       .selectAll()
@@ -133,7 +168,7 @@ export default function Dropdown() {
   }, [data]);
   useEffect(() => {
     loadData();
-  }, [selectedYear,selectedWeek]);
+  }, [selectedYear, selectedWeek]);
   const loadData = async () => {
     const response = await service.homeget();
     const filtered = response.data.map((val) => {
@@ -159,7 +194,9 @@ export default function Dropdown() {
       date.getDate() + 6
     );
 
-    return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+    return `${moment(startDate).format("MM/DD/YYYY")} -${moment(endDate).format(
+      "MM/DD/YYYY"
+    )} `;
   }
 
   const weekOptions = [];
@@ -187,19 +224,27 @@ export default function Dropdown() {
   // const handleWeekChange = (event) => {
   //   setSelectedWeek(parseInt(event.target.value));
   // };
-  const [weekNumber, setWeekNumber] = useState("");
+  // const [weekNumber, setWeekNumber] = useState("");
 
-  const getDates = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const sunday = new Date(year, 0, (weekNumber - 1) * 7 + 8);
-    const monday = new Date(year, 0, (weekNumber - 1) * 7 + 2);
-    const saturday = new Date(year, 0, (weekNumber - 1) * 7 + 7);
-    return { sunday, saturday, monday };
-  };
+  // const getDates = () => {
+  //   const date = new Date();
+  //   const year = date.getFullYear();
+  //   const sunday = new Date(year, 0, (weekNumber - 1) * 7 + 8);
+  //   const monday = new Date(year, 0, (weekNumber - 1) * 7 + 2);
+  //   const saturday = new Date(year, 0, (weekNumber - 1) * 7 + 7);
+  //   return { sunday, saturday, monday };
+  // };
 
   const handleWeekChange = (event) => {
-    setSelectedWeek(parseInt(event.target.value));
+    const dateRange = getWeekDates(
+      selectedYear,
+      parseInt(event.target.value)
+    ).split("-");
+    setSelectedWeek({
+      startDate: dateRange[0],
+      endDate: dateRange[1],
+      selectedWeek: parseInt(event.target.value),
+    });
   };
 
   const [thisweek, setThisweek] = useState(" ");
@@ -219,7 +264,9 @@ export default function Dropdown() {
   // console.log('Monday:', monday);
   // console.log('Sunday:', sunday);
   function getWeekNumber(date) {
-    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const d = new Date(
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    );
     const dayNum = d.getUTCDay() || 7;
     d.setUTCDate(d.getUTCDate() + 4 - dayNum);
     const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
@@ -228,8 +275,6 @@ export default function Dropdown() {
       Math.ceil(((d - yearStart) / 86400000 + 1) / 7),
     ];
   }
-
-
 
   return (
     <div>
@@ -252,14 +297,6 @@ export default function Dropdown() {
           {selectedYear}
         </select>
 
-        <input
-          type="week"
-          value={thisweek}
-          onChange={(e) => {
-            setThisweek(e.target.value);
-          }}
-        />
-
         {thisweek}
         <br />
         {datadate}
@@ -267,7 +304,7 @@ export default function Dropdown() {
           <label htmlFor="week-select">Week:</label>
           <select
             id="week-select"
-            value={selectedWeek}
+            value={selectedWeek.selectedWeek}
             onChange={handleWeekChange}
           >
             {weekOptions}
@@ -275,14 +312,14 @@ export default function Dropdown() {
         </div>
 
         {/* .......new */}
-        <div>
+        {/* <div>
           <label htmlFor="week-number">Enter week number: </label>
-          {/* <input
+          <input
             type="number"
             id="week-number"
             value={weekNumber}
             onChange={handleWeekChange}
-          /> */}
+          />
           <input
             type="number"
             id="week-number"
@@ -296,7 +333,7 @@ export default function Dropdown() {
               <p>Saturday: {getDates().saturday.toLocaleDateString()}</p>
             </div>
           )}
-        </div>
+        </div> */}
 
         <br />
 

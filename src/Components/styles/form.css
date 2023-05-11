@@ -5,9 +5,8 @@
   flex-direction: column;
 }
 .auth-form-container {
-  background-color:#a96daa;
+  background-color: #a96daa;
   color: white;
-
 }
 
 @media screen and (min-width: 600px) {

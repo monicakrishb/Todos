@@ -128,28 +128,6 @@
       "id": 93
     },
     {
-      "taskname": "cvbkln",
-      "description": "cvbk;l'[k;",
-      "priority": "high",
-      "duedate": "2023-05-07",
-      "status": "completed",
-      "taskcolour": "completed",
-      "useremail": "sanvi@gmail.com",
-      "currentDate": "2023-05-02T06:51:52.214Z",
-      "id": 94
-    },
-    {
-      "taskname": "Reactjs",
-      "description": "Hooks",
-      "priority": "high",
-      "duedate": "2023-05-05",
-      "status": "inprogress",
-      "taskcolour": "inprogress",
-      "useremail": "sanvi@gmail.com",
-      "currentDate": "2023-05-02T05:18:50.629Z",
-      "id": 96
-    },
-    {
       "taskname": "sdfghj",
       "description": "sdfghj",
       "priority": "medium",
@@ -184,25 +162,69 @@
     },
     {
       "taskname": "Reactjs",
-      "description": "Reconciliation",
+      "description": "Lists",
       "priority": "high",
-      "duedate": "2023-05-05",
+      "duedate": "2023-05-09",
       "status": "pending",
       "taskcolour": "pending",
       "useremail": "sanvi@gmail.com",
-      "currentDate": "2023-05-03T03:17:09.781Z",
-      "id": 102
+      "currentDate": "2023-05-05T04:46:02.526Z",
+      "id": 104
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "useMemo",
+      "priority": "high",
+      "duedate": "2023-05-10",
+      "status": "inprogress",
+      "taskcolour": "inprogress",
+      "useremail": "bavani@gmail.com",
+      "currentDate": "2023-05-08T03:43:16.870Z",
+      "id": 105
     },
     {
       "taskname": "Javascript",
-      "description": "symbol",
-      "priority": "medium",
-      "duedate": "2023-05-06",
+      "description": "Closure",
+      "priority": "high",
+      "duedate": "2023-05-09",
       "status": "pending",
-      "taskcolour": "pending",
+      "taskcolour": "cancelled",
+      "useremail": "bavani@gmail.com",
+      "currentDate": "2023-05-08T03:43:40.331Z",
+      "id": 106
+    },
+    {
+      "taskname": "Javascript",
+      "description": "Binding",
+      "priority": "high",
+      "duedate": "2025-02-10",
+      "status": "pending",
+      "taskcolour": "completed",
       "useremail": "sanvi@gmail.com",
-      "currentDate": "2023-05-04T03:54:44.984Z",
-      "id": 103
+      "currentDate": "2023-05-08T04:01:29.228Z",
+      "id": 107
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "Diffing",
+      "priority": "medium",
+      "duedate": "2023-05-25",
+      "status": "pending",
+      "taskcolour": "inprogress",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-08T04:02:16.124Z",
+      "id": 108
+    },
+    {
+      "taskname": "Reactjs",
+      "description": "VirtualDOM",
+      "priority": "medium",
+      "duedate": "2023-06-02",
+      "status": "completed",
+      "taskcolour": "completed",
+      "useremail": "sanvi@gmail.com",
+      "currentDate": "2023-05-08T05:03:29.759Z",
+      "id": 109
     }
   ],
   "user": [

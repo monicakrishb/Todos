@@ -75,7 +75,7 @@ const user = [
     pass: "Kural",
     mobile: "9003759065",
     id: 3,
-  },
+  }, 
   {
     name: "Monica",
     email: "monica@gmail.com",

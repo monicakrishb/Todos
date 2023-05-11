@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 import { toast } from "react-toastify";
@@ -11,6 +11,13 @@ export const Register = () => {
   const [mobile, setMobile] = useState("");
 
   const usenavigate = useNavigate();
+
+  useEffect(()=>{
+    const data=sessionStorage.getItem("useremail");
+    if(data){
+    usenavigate("/");
+    }
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();

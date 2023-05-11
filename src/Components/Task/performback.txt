@@ -20,7 +20,7 @@ export default function Dropdown() {
   ]);
   const svgRef = useRef();
 
-  const [selectedYear, setSelectedYear] = useState(2022);
+  const [selectedYear, setSelectedYear] = useState(2023);
   const [selectedWeek, setSelectedWeek] = useState({});
 
   useEffect(() => {
@@ -94,12 +94,12 @@ export default function Dropdown() {
       },
     ]);
   }, [selectedYear]);
-
   useEffect(() => {
     const filteredData = userdata.filter((d) => {
       const dueDate = new Date(d.duedate);
       const startDate = new Date(selectedWeek.startDate);
       const endDate = new Date(selectedWeek.endDate);
+      console.log(userdata[17].duedate);
       return dueDate >= startDate && dueDate <= endDate;
     });
     const completedCount = filteredData.filter(
@@ -224,7 +224,7 @@ export default function Dropdown() {
   // const handleWeekChange = (event) => {
   //   setSelectedWeek(parseInt(event.target.value));
   // };
-  // const [weekNumber, setWeekNumber] = useState("");
+  const [weekNumber, setWeekNumber] = useState("");
 
   // const getDates = () => {
   //   const date = new Date();
@@ -235,29 +235,17 @@ export default function Dropdown() {
   //   return { sunday, saturday, monday };
   // };
 
-  // const handleWeekChange = (event) => {
-  //   const dateRange = getWeekDates(
-  //     selectedYear,
-  //     parseInt(event.target.value)
-  //   ).split("-");
-  //   setSelectedWeek({
-  //     startDate: dateRange[0],
-  //     endDate: dateRange[1],
-  //     selectedWeek: parseInt(event.target.value),
-  //   });
-  // };
   const handleWeekChange = (event) => {
-  const selectedWeekNumber = parseInt(event.target.value);
-  const dateRange = getWeekDates(selectedYear, selectedWeekNumber).split("-");
-  setSelectedWeek({
-    startDate: dateRange[0],
-    endDate: dateRange[1],
-    selectedWeek: selectedWeekNumber,
-  });
-  setSelectedYear(selectedYear); // Add this line to keep the same year selected
-  setSelectedYear(2022);
-};
-
+    const dateRange = getWeekDates(
+      selectedYear,
+      parseInt(event.target.value)
+    ).split("-");
+    setSelectedWeek({
+      startDate: dateRange[0],
+      endDate: dateRange[1],
+      selectedWeek: parseInt(event.target.value),
+    });
+  };
 
   const [thisweek, setThisweek] = useState(" ");
   const datadate = thisweek.slice(6, 9);
@@ -308,6 +296,14 @@ export default function Dropdown() {
           {yearOptions}
           {selectedYear}
         </select>
+
+        <input
+          type="week"
+          value={thisweek}
+          onChange={(e) => {
+            setThisweek(e.target.value);
+          }}
+        />
 
         {thisweek}
         <br />

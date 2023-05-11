@@ -7,5 +7,5 @@ test("Register", async () => {
     <MemoryRouter>
       <Navbar />
     </MemoryRouter>
-  );
+  ); 
 });    

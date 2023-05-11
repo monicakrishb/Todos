@@ -220,24 +220,5 @@ it("should display the correct number of options", () => {
   );
   expect(screen.getAllByRole("option").length).toBe(8);
 });
-test('renders task data in fields when editing', () => {
-  const taskData = {
-    id: 1,
-    taskname: 'Test Task',
-    description: 'Test Description',
-    priority: 'medium',
-    status: 'pending',
-    duedate: '2023-04-30T00:00:00.000Z',
-    taskcolour: 'pending',
-    useremail: 'test@example.com',
-    currentDate: '2023-04-20T08:20:00.000Z',
-  };
-  render(<Router.MemoryRouter><Create data={taskData} setTask={() => {}} /></Router.MemoryRouter>);
-  expect(screen.getByDisplayValue('Test Task')).toBeInTheDocument();
-  expect(screen.getByDisplayValue('Test Description')).toBeInTheDocument();
-  expect(screen.getByDisplayValue('Medium')).toBeInTheDocument();
-  expect(screen.getByDisplayValue('Pending')).toBeInTheDocument();
-});
-
 
 

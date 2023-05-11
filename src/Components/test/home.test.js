@@ -3,7 +3,6 @@ import MockAdapter from "axios-mock-adapter";
 import { MemoryRouter } from "react-router-dom";
 import Home from "../Task/Home";
 import axios from "axios";
-import * as Router from "react-router-dom";
 
 test("Tasklist", async () => {
   render(

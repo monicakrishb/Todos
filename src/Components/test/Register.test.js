@@ -15,7 +15,7 @@ test("Register", async () => {
   render(
     <MemoryRouter>
       <Register />
-    </MemoryRouter>
+    </MemoryRouter> 
   );
 });
 const user = [

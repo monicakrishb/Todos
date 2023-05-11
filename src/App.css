@@ -114,7 +114,6 @@ td {
 }
 .cTask {
   margin: 54px;
-
 }
 #complete {
   display: flex;
@@ -140,11 +139,10 @@ td {
   width: 1300px;
   position: relative;
   left: 50px;
- top: 160px;
+  top: 160px;
 }
-#pie{
+#pie {
   margin-top: 170px;
-
 }
 #err {
   color: red;
@@ -163,4 +161,12 @@ td {
 }
 #categorize-tasks {
   font-style: italic;
+}
+.per {
+  position: relative;
+  left: 8px;
+}
+.list {
+  position: relative;
+  right: 8px;
 }

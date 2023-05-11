@@ -50,8 +50,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <Link to="/tasklist" className="nav-link">
+        <Link to="/tasklist" className="nav-link list">
           List
+        </Link>
+        <Link to="/perform" className="nav-link per">
+          Performance
         </Link>
 
         {value === null ? (
